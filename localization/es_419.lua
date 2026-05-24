@@ -91,8 +91,8 @@ return {
             j_bof_a_wonderous_bread = {
                 name = "Pan maravilloso",
                 text = {
-                    "Balancea un {C:white,B:1}#1#%{} de {C:chips}Fichas{}",
-                    "y {C:mult}Multi{}, disminuye en {C:white,B:1}-#2#%{}",
+                    "Balancea un {C:white,X:plasma}#1#%{} de {C:chips}Fichas{}",
+                    "y {C:mult}Multi{}, disminuye en {C:white,X:plasma}-#2#%{}",
                     "al final de la ronda"
                 }
             },
