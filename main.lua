@@ -108,7 +108,7 @@ local files = {
             -- "retro",
             "soapy",
             -- "display",
-            -- "lightning"
+            "lightning"
         }, directory = "items/flats/"
     },
     fish = {
