@@ -31,7 +31,7 @@ return {
                 name = "Leek",
                 text = {
                     "Increase all {C:attention}listed",
-                    "{C:green,E:1}probabilities{} by {C:green}+#1#,",
+                    "{C:green,E:1}probabilities{} by {C:green}+#1#{},",
                     "decreases by {C:red}-#2#{} when",
                     "a {C:green}probability{} succeeds",
                 }
@@ -47,7 +47,7 @@ return {
             j_bof_a_wonderous_bread = {
                 name = "Wonderous Bread",
                 text = {
-                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult,",
+                    "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
                     "decreases by {C:white,X:plasma}-#2#%{} at end of round"
                 }
             },
@@ -150,8 +150,8 @@ return {
                 name = "Super Joker",
                 text = {
                     "{C:blue}+#1#{} hands if {C:attention}Blind{} is",
-                    "not won by final hand,",
-                    "{s:0.8}may only trigger once per round"
+                    "not won by final hand",
+                    "{C:inactive}(May only trigger once per round)"
                 }
             },
             j_bof_j_eureka = {
