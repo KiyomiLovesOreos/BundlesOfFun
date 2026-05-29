@@ -23,13 +23,31 @@ SMODS.Booster {
         }
     end,
     create_card = function(self, card, i)
-        return {
-            set = "Fish",
-            skip_materialize = true,
-            area = G.pack_cards,
-            soulable = true,
-            key_append = "bof_fis"
-        }
+        if next(SMODS.find_card("j_bof_j_eureka")) then
+            return {
+                set = "fish_b",
+                skip_materialize = true,
+                area = G.pack_cards,
+                soulable = true,
+                key_append = "bof_fis3"
+            }
+        elseif pseudorandom("p_bof_tackle_jumbo_1") > 0.7 then
+            return {
+                set = "fish_b",
+                skip_materialize = true,
+                area = G.pack_cards,
+                soulable = true,
+                key_append = "bof_fis2"
+            }
+        else
+            return {
+                set = "fish_s",
+                skip_materialize = true,
+                area = G.pack_cards,
+                soulable = true,
+                key_append = "bof_fis1"
+            }
+        end
     end,
     ease_background_colour = function(self)
         ease_colour(G.C.DYN_UI.MAIN, G.C.bof_fish)

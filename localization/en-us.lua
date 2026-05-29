@@ -164,6 +164,10 @@ return {
                     {
                         "{C:spectral}Spectral Packs{} and {C:planet}Celestial Packs",
                         "may contain {C:tarot}Tarot{} cards"
+                    },
+                    {
+                        "{C:fish}Tackle Packs{} always contain",
+                        "only {C:white,X:big}Big{} {C:fish}Fish{} cards"
                     }
                 }
             },
