@@ -786,7 +786,9 @@ return {
             c_bof_i_trout_l = {
                 name = "Rainbow Trout {X:legendary}Legendary",
                 text = {
-                    "Unfinished"
+                    "Jokers and other consumables",
+                    "each give {C:white,X:mult}X#1#{} Mult,",
+                    "{C:attention}+#2#{} consumable slot while held"
                 }
             },
             c_bof_i_goldfish_s = {
