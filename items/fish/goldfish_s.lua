@@ -6,7 +6,7 @@ SMODS.Consumable {
     -- pos = { x = 2, y = 1 },
     config = {
         extra = {
-            dollars = 2,
+            dollars = 1,
             slots = 1,
             rounds_remaining = 2
         }

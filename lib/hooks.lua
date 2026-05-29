@@ -143,7 +143,7 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
                     set = pseudorandom_element(consumeables, pseudoseed("j_bof_j_eureka")).set,
                     area = G.pack_cards,
                     skip_materialize = true,
-                    soulable = false,
+                    soulable = true,
                     key_append = "ar3"
                 }
             elseif G.GAME.used_vouchers.v_omen_globe and pseudorandom("omen_globe") > 0.8 then

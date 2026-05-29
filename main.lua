@@ -116,12 +116,16 @@ local files = {
         list = {
             "bass_s",
             "bass_b",
+            "bass_l",
             "betta_s",
             "betta_b",
+            "betta_l",
             "trout_s",
             "trout_b",
+            "trout_l",
             "goldfish_s",
             "goldfish_b",
+            "goldfish_l",
         }, directory = "items/fish/"
     },
     -- coupons = {

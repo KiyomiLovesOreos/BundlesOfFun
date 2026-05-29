@@ -6,12 +6,12 @@ SMODS.Consumable {
     -- pos = { x = 3, y = 1 },
     config = {
         extra = {
-            dollars = 4,
+            dollars = 2,
             slots = 1,
             rounds_remaining = 3
         }
     },
-    cost = 4,
+    cost = 6,
     atlas = "placeholder",
     loc_vars = function(self, info_queue, card)
         return {

@@ -11,7 +11,7 @@ SMODS.Consumable {
             rounds_remaining = 3
         }
     },
-    cost = 4,
+    cost = 6,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
         return {
