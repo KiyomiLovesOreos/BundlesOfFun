@@ -437,6 +437,22 @@ return {
                     "{E:1,s:1.3}?????",
                 }
             },
+            j_bof_f_shennong = {
+                name = "Shennong",
+                text = {
+                    {
+                        "{C:attention}Bottommost{} card in deck becomes a",
+                        "{C:attention}Lucky Card{} when {C:attention}Blind{} is selected",
+                    },
+                    {
+                        "All {C:attention}listed {C:green,E:1}probabilities{} are",
+                        "{C:green}guaranteed{} during the {C:attention}Boss Blind{}"
+                    }
+                },
+                unlock = {
+                    "{E:1,s:1.3}?????",
+                }
+            },
             j_bof_f_nuwa_fuxi = {
                 name = "Nüwa & Fuxi",
                 text = {

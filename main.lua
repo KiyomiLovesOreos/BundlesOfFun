@@ -96,6 +96,7 @@ local files = {
             "turold",
             "taillefer",
             "dagonet",
+            "shennong"
         }, directory = "items/fables/"
     },
     flats = {

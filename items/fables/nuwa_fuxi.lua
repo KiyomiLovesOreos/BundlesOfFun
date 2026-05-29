@@ -1,8 +1,8 @@
 SMODS.Joker {
     key = "f_nuwa_fuxi",
     name = "Nüwa & Fuxi",
-    pos = { x = 5, y = 4 },
-    soul_pos = { x = 5, y = 5 },
+    pos = { x = 6, y = 4 },
+    soul_pos = { x = 6, y = 5 },
     cost = 20,
     rarity = 4,
     unlocked = false,
