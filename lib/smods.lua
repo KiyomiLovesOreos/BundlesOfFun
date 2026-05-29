@@ -89,7 +89,7 @@ SMODS.ConsumableType({
     key = "Fish",
     primary_colour = { 1.0, 0.6, 0.7, 1 },
     secondary_colour = { 0.85, 0.45, 0.55, 1 },
-    collection_rows = { 6, 6 }, --todo: make { 6, 6 } when legendary fishes are added
+    collection_rows = { 6, 6 },
     shop_rate = 0,
     default = "i_bass_s"
 })
