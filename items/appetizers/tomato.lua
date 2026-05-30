@@ -10,7 +10,7 @@ SMODS.Joker {
     },
     pos = { x = 4, y = 0 },
     cost = 5,
-    rarity = 2,
+    rarity = 1,
     blueprint_compat = true,
     eternal_compat = false,
     perishable_compat = false,
