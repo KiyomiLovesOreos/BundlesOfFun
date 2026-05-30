@@ -1,11 +1,11 @@
 SMODS.Joker {
-    key = "j_knife_thrower",
-    name = "Knife Thrower",
+    key = "j_peter",
+    name = "Pleading Peter",
     config = { extra = { blind_reduction = 5 } },
-    -- pos = { x = 0, y = 0 },
+    pos = { x = 7, y = 5 },
     cost = 6,
     rarity = 2,
-    atlas = "placeholder",
+    atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return { vars = { card.ability.extra.blind_reduction } }
     end,

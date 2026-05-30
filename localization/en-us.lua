@@ -331,8 +331,8 @@ return {
                     "{C:inactive}(Must have room)"
                 }
             },
-            j_bof_j_knife_thrower = {
-                name = "Knife Thrower",
+            j_bof_j_peter = {
+                name = "Pleading Peter",
                 text = {
                     "Destroy each played card with",
                     "a {C:attention}seal{} and permanently",

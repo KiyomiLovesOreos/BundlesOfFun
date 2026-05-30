@@ -79,7 +79,7 @@ local files = {
             "hotboxer",
             -- "director",
             "sword_swallower",
-            "knife_thrower",
+            "peter",
             "firedancer"
         }, directory = "items/jesters/"
     },
