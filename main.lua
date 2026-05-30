@@ -70,7 +70,7 @@ local files = {
             "soothsayer",
             "polymath",
             "luminary",
-            "furious",
+            "felix",
             "larry",
             "phony",
             "frank",

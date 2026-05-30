@@ -255,8 +255,8 @@ return {
                     "{C:hearts}Heart{} or {C:diamonds}Diamond{} suit this round"
                 }
             },
-            j_bof_j_furious = {
-                name = "Furious Joker",
+            j_bof_j_felix = {
+                name = "Furious Felix",
                 text = {
                     "Earn {C:money}$#1#{} at end",
                     "of round",
