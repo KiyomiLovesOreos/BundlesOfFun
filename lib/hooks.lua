@@ -458,6 +458,7 @@ function create_card(forced_type, area, legendary, key, forced_rarity, materiali
     return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
 end
 
+-- pianoman: force common jokers cont.
 local original_smods_create_card = SMODS.create_card
 function SMODS.create_card(t)
     if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
@@ -467,6 +468,15 @@ function SMODS.create_card(t)
         t.key = nil
     end
     return original_smods_create_card(t)
+end
+
+-- display a custom crash message when a card fails to load
+local oldcardload = Card.load
+function Card:load(cardTable, other_card)
+    if not G.P_CENTERS[cardTable.save_fields.center] and cardTable.save_fields.center:find("bof_") then
+        error("A Joker from a disabled bundle in Bundles Of Fun is present in your continued run. Please enable all bundles in the mod settings and restart Balatro.")
+    end
+    return oldcardload(cardTable, other_card)
 end
 
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)

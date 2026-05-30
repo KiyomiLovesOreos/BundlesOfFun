@@ -147,7 +147,7 @@ return {
                 name = "Super Joker",
                 text = {
                     "{C:blue}+#1#{} hands if {C:attention}Blind{} is",
-                    "not won by final hand",
+                    "not won by {C:attention}final hand",
                     "{C:inactive}(May only trigger once per round)"
                 }
             },
