@@ -331,6 +331,16 @@ return {
                     "{C:inactive}(Must have room)"
                 }
             },
+            j_bof_j_knife_thrower = {
+                name = "Knife Thrower",
+                text = {
+                    "Destroy each played card with",
+                    "a {C:attention}seal{} and permanently",
+                    "decrease the {C:attention}current Blind type's{}",
+                    "score requirement by {C:attention}#1#%{} per card",
+                    "{C:inactive}(Multiplicative)"
+                }
+            },
             -- Normalities
             j_bof_n_notebook = {
                 name = "Notebook",

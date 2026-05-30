@@ -27,7 +27,7 @@ SMODS.Joker {
                     end
                 }))
             end
-            if context.end_of_round and context.main_eval then
+            if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,
@@ -65,7 +65,7 @@ SMODS.Joker {
                     end
                 }))
             end
-            if context.end_of_round and context.main_eval then
+            if context.blind_defeated then
                 G.E_MANAGER:add_event(Event({
                     trigger = "after",
                     delay = 0.4,

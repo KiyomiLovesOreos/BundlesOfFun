@@ -1,5 +1,4 @@
 SMODS.Joker({
-
 	key = "j_luminary",
 	name = "Luminary",
 	config = {

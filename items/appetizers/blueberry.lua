@@ -11,6 +11,8 @@ SMODS.Joker {
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

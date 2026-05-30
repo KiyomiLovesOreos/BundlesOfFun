@@ -432,6 +432,20 @@ function Card:set_sprites(_center, _front)
     end
 end
 
+-- knife thrower: reset blind stuff on new run
+local original_game_start_run = Game.start_run
+function Game:start_run(arg)
+    if G.GAME.bof_knife_thrower_original_mult then
+        for blind_key, original_mult in pairs(G.GAME.bof_knife_thrower_original_mult) do
+            if G.P_BLINDS[blind_key] then
+                G.P_BLINDS[blind_key].mult = original_mult
+            end
+        end
+        G.GAME.bof_knife_thrower_original_mult = nil
+    end
+    return original_game_start_run(self, arg)
+end
+
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
 -- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 -- SMODS.calculate_repetitions = function(card, context, reps)

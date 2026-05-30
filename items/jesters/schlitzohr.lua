@@ -4,7 +4,7 @@ SMODS.Joker({
 	pos = { x = 4, y = 2 },
 	cost = 8,
 	rarity = 3,
-	blueprint_compat = false,
+	blueprint_compat = true,
 	atlas = "joker",
 	calculate = function(self, card, context)
 		if context.destroy_card and (context.cardarea == G.play or context.cardarea == "unscored") and G.GAME.current_round.hands_left > 0 then

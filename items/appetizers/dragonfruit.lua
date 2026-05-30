@@ -6,6 +6,7 @@ SMODS.Joker {
     cost = 7,
     rarity = 3,
     blueprint_compat = true,
+    eternal_compat = false,
     atlas = "joker",
     calculate = function(self, card, context)
         if context.before then
