@@ -11,7 +11,7 @@ pattern = "local _size = *"
 position = "after"
 match_indent = true
 payload = '''
-if G.GAME.bof_pianoman_unlimited_boosters then
+if G.GAME.bof_pianoman_unlimited_boosters and not (G.GAME.jest_change_booster_options and (G.GAME.jest_change_booster_options.trigger or G.GAME.jest_change_booster_options.pack_choices == "unlimited")) then
     G.GAME.pack_choices = _size
 end
 '''
