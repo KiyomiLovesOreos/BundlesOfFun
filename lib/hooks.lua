@@ -376,7 +376,7 @@ function create_card_for_shop(area)
         and card.ability and card.ability.consumeable
         and not (card.edition and card.edition.negative)
     then
-        if pseudorandom(pseudoseed("b_bof_l_fossilized")) < 0.03 then
+        if pseudorandom(pseudoseed("b_bof_l_fossilized")) < 0.06 then
             card:set_edition({ negative = true }, true)
         end
     end

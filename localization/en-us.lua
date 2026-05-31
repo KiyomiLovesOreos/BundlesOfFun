@@ -768,7 +768,7 @@ return {
                 text = {
                     "{C:chips}+#1#{} Chips and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_bass_b = {
@@ -776,7 +776,7 @@ return {
                 text = {
                     "{C:chips}+#1#{} Chips and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_bass_l = {
@@ -793,7 +793,7 @@ return {
                 text = {
                     "{C:mult}+#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_betta_b = {
@@ -801,7 +801,7 @@ return {
                 text = {
                     "{C:mult}+#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_betta_l = {
@@ -818,7 +818,7 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_trout_b = {
@@ -826,7 +826,7 @@ return {
                 text = {
                     "{C:white,X:mult}X#1#{} Mult and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_trout_l = {
@@ -842,7 +842,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_goldfish_b = {
@@ -850,7 +850,7 @@ return {
                 text = {
                     "Earn {C:money}$#1#{} and",
                     "{C:attention}+#2#{} consumable slot#<s>2# while held",
-                    "{C:inactive}#3# rounds remaining..."
+                    "{C:inactive}#3# round#<s>3# remaining..."
                 }
             },
             c_bof_i_goldfish_l = {
