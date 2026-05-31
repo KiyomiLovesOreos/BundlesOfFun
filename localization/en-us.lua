@@ -767,7 +767,7 @@ return {
                 name = "Largemouth Bass {X:small}Small",
                 text = {
                     "{C:chips}+#1#{} Chips and",
-                    "{C:attention}+#2#{} consumable slot while held",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# rounds remaining..."
                 }
             },
@@ -775,7 +775,7 @@ return {
                 name = "Largemouth Bass {X:big}Big",
                 text = {
                     "{C:chips}+#1#{} Chips and",
-                    "{C:attention}+#2#{} consumable slot while held",
+                    "{C:attention}+#2#{} consumable slot#<s>2# while held",
                     "{C:inactive}#3# rounds remaining..."
                 }
             },
@@ -809,7 +809,7 @@ return {
                 text = {
                     "Gives {C:mult}+Mult{} equal to",
                     "the {C:attention}total{} amount of Mult",
-                    "that all {C:attention}poker hands{} add to,",
+                    "that all visible {C:attention}poker hands{} add to,",
                     "{C:attention}+#1#{} consumable slot#<s>1# while held"
                 }
             },
