@@ -43,10 +43,10 @@ local files = {
             "grapes",
             "leek",
             "durian",
-            "wonderous_bread",
-            "jelly_beans",
+            "bread",
+            "beans",
             "apple",
-            "apple_core",
+            "core",
             "tomato"
 		}, directory = "items/appetizers/"
     },
@@ -70,14 +70,18 @@ local files = {
             "soothsayer",
             "polymath",
             "luminary",
-            "furious",
+            "felix",
             "larry",
             "phony",
             "frank",
-            "crafted",
+            -- "crafted", -- todo: new effect
             "schlitzohr",
             "hotboxer",
-            -- "director"
+            -- "director",
+            "sword_swallower",
+            "laughing_stock",
+            "firedancer",
+            "pianoman"
         }, directory = "items/jesters/"
     },
     normalities = {
@@ -161,6 +165,11 @@ if BundlesOfFun.config.bundles.appetizers then
     end
 end
 
+-- shrimp only loads if appetizers and fish are enabled
+if BundlesOfFun.config.bundles.appetizers and BundlesOfFun.config.bundles.fish then
+    assert(SMODS.load_file(files["appetizers"].directory .. "shrimp.lua"))()
+end
+
 if BundlesOfFun.config.bundles.jesters then
     for _, name in ipairs(files["jesters"].list) do
         assert(SMODS.load_file(files["jesters"].directory .. name .. ".lua"))()
@@ -179,6 +188,11 @@ if BundlesOfFun.config.bundles.fables then
     end
 end
 
+-- nuwa & fuxi only load if both fables and fish are enabled
+if BundlesOfFun.config.bundles.fables and BundlesOfFun.config.bundles.fish then
+    assert(SMODS.load_file(files["fables"].directory .. "nuwa_fuxi.lua"))()
+end
+
 if BundlesOfFun.config.bundles.flats then
     for _, name in ipairs(files["flats"].list) do
         assert(SMODS.load_file(files["flats"].directory .. name .. ".lua"))()
@@ -189,11 +203,6 @@ if BundlesOfFun.config.bundles.fish then
     for _, name in ipairs(files["fish"].list) do
         assert(SMODS.load_file(files["fish"].directory .. name .. ".lua"))()
     end
-end
-
--- nuwa & fuxi only load if both fish and fables are enabled
-if BundlesOfFun.config.bundles.fables and BundlesOfFun.config.bundles.fish then
-    assert(SMODS.load_file(files["fables"].directory .. "nuwa_fuxi.lua"))()
 end
 
 -- for _, name in ipairs(files["coupons"].list) do

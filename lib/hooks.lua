@@ -432,6 +432,53 @@ function Card:set_sprites(_center, _front)
     end
 end
 
+-- laughing stock: reset blind stuff on new run
+local original_game_start_run = Game.start_run
+function Game:start_run(arg)
+    if G.GAME.bof_knife_thrower_original_mult then
+        for blind_key, original_mult in pairs(G.GAME.bof_knife_thrower_original_mult) do
+            if G.P_BLINDS[blind_key] then
+                G.P_BLINDS[blind_key].mult = original_mult
+            end
+        end
+        G.GAME.bof_knife_thrower_original_mult = nil
+    end
+    return original_game_start_run(self, arg)
+end
+
+-- pianoman: force common jokers
+local original_create_card = create_card
+function create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+    if G.GAME.bof_pianoman_common_only and (forced_type == "Joker" or (forced_key and G.P_CENTERS[forced_key] and G.P_CENTERS[forced_key].set == "Joker")) then
+        forced_type = "Joker"
+        legendary = nil
+        forced_rarity = 0.7
+        forced_key = nil
+    end
+    return original_create_card(forced_type, area, legendary, key, forced_rarity, materialize, skip_materialize, soulable, hidden, offset_y, forced_key, silent, from_buffer)
+end
+
+-- pianoman: force common jokers cont.
+local original_smods_create_card = SMODS.create_card
+function SMODS.create_card(t)
+    if G.GAME.bof_pianoman_common_only and t and (t.set == "Joker" or (t.key and G.P_CENTERS[t.key] and G.P_CENTERS[t.key].set == "Joker")) then
+        t.set = "Joker"
+        t.legendary = nil
+        t.rarity = 0.7
+        t.key = nil
+    end
+    return original_smods_create_card(t)
+end
+
+-- display a custom crash message when a card fails to load
+local oldcardload = Card.load
+function Card:load(cardTable, other_card)
+    if not G.P_CENTERS[cardTable.save_fields.center] and cardTable.save_fields.center:find("bof_") then
+        error("A Joker from a disabled bundle in Bundles Of Fun is present in your continued run. Please enable all bundles in the mod settings and restart Balatro.")
+    end
+    return oldcardload(cardTable, other_card)
+end
+
 -- director logic (currently tracks all triggers and i can't get it to be otherwise)
 -- local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 -- SMODS.calculate_repetitions = function(card, context, reps)
@@ -442,3 +489,55 @@ end
 --     end
 --     return g
 -- end
+
+-- -- make it so that perkeo can't copy legendary fish
+-- local legendary_fish_keys = {
+--     "c_bof_i_bass_l",
+--     "c_bof_i_betta_l",
+--     "c_bof_i_goldfish_l",
+--     "c_bof_i_trout_l"
+-- }
+
+-- SMODS.Joker:take_ownership("perkeo", {
+--     name = "Perkeo (Bundles Of Fun)",
+--     loc_vars = function(self, info_queue, card)
+--         local main_end
+--         if G.consumeables and G.consumeables.cards then
+--             for _, consumable in ipairs(G.consumeables.cards) do
+--                 if consumable.config.center and consumable.config.center.key then
+--                     for _, legendary_key in ipairs(legendary_fish_keys) do
+--                         if consumable.config.center.key == legendary_key then
+--                             main_end = {}
+--                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
+--                             break
+--                         end
+--                     end
+--                     if main_end then break end
+--                 end
+--             end
+--         end
+--         return { vars = { card.ability.extra }, main_end = main_end }
+--     end,
+--     calculate = function(self, card, context)
+--         if context.ending_shop then
+--             local eligibleJokers = {}
+--             for k, v in pairs(G.consumeables.cards) do
+--                 if v.ability.consumeable and not SMODS.in_scoring(v.config.center.key, legendary_fish_keys) then
+--                     table.insert(eligibleJokers, v)
+--                 end
+--             end
+--             if #eligibleJokers > 0 then
+--                 G.E_MANAGER:add_event(Event({
+--                     func = function() 
+--                         local card = copy_card(pseudorandom_element(eligibleJokers, pseudoseed("perkeo")), nil)
+--                         card:set_edition({ negative = true }, true)
+--                         card:add_to_deck()
+--                         G.consumeables:emplace(card) 
+--                         return true
+--                     end}))
+--                 card_eval_status_text(context_blueprint_card or self, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+--                 return nil, true
+--             end
+--         end
+--     end
+-- })

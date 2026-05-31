@@ -11,6 +11,8 @@ SMODS.Joker {
     cost = 6,
     rarity = 2,
     blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -38,8 +40,7 @@ SMODS.Joker {
             else
                 SMODS.destroy_cards(card, nil, nil, true)
                 return {
-                    message = localize("k_eaten_ex"),
-                    colour = G.C.FILTER,
+                    message = localize("k_eaten_ex")
                 }
             end
         end

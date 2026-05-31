@@ -12,11 +12,7 @@ end
 SMODS.Joker {
     key = "j_timmy",
     name = "Youngster Timmy",
-    config = {
-        extra = {
-            chips = 6,
-        }
-    },
+    config = { extra = { chips = 6 } },
     pos = { x = 5, y = 1 },
     cost = 5,
     rarity = 1,

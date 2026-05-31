@@ -11,6 +11,8 @@ SMODS.Joker {
     cost = 5,
     rarity = 1,
     blueprint_compat = true,
+    eternal_compat = false,
+    perishable_compat = false,
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {
@@ -30,7 +32,7 @@ SMODS.Joker {
             }
         end
         if context.end_of_round and not context.game_over and context.main_eval and not context.blueprint then
-            if card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 then
+            if card.ability.extra.perma_bonus - card.ability.extra.perma_bonus_mod <= 0 and not context.blueprint then
                 SMODS.destroy_cards(card, nil, nil, true)
                 return {
                     message = localize("k_eaten_ex")

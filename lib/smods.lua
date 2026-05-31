@@ -91,22 +91,26 @@ SMODS.ConsumableType({
     secondary_colour = { 0.85, 0.45, 0.55, 1 },
     collection_rows = { 6, 6 },
     shop_rate = 0,
-    default = "i_bass_s"
+    select_card = "consumeables",
+    default = "c_bof_i_bass_s"
 })
 
 SMODS.ObjectType({
     key = "fish_s",
-    default = "i_bass_s"
+    select_card = "consumeables",
+    default = "c_bof_i_bass_s",
 })
 
 SMODS.ObjectType({
     key = "fish_b",
-    default = "i_bass_b"
+    select_card = "consumeables",
+    default = "c_bof_i_bass_b"
 })
 
 SMODS.ObjectType({
     key = "fish_l",
-    default = "i_bass_l"
+    select_card = "consumeables",
+    default = "c_bof_i_bass_l"
 })
 
 SMODS.current_mod.optional_features = {
