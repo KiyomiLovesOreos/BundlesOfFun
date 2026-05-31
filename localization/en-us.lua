@@ -44,14 +44,14 @@ return {
                     "with {C:tarot}The Fool"
                 }
             },
-            j_bof_a_wonderous_bread = {
+            j_bof_a_bread = {
                 name = "Wonderous Bread",
                 text = {
                     "Balance {C:white,X:plasma}#1#%{} of {C:chips}Chips{} and {C:mult}Mult{},",
                     "decreases by {C:white,X:plasma}-#2#%{} at end of round"
                 }
             },
-            j_bof_a_jelly_beans = {
+            j_bof_a_beans = {
                 name = "Jelly Beans",
                 text = {
                     "The next {C:attention}#1# Blind#<s>1#{} skipped,",
@@ -67,7 +67,7 @@ return {
                     "at end of round"
                 }
             },
-            j_bof_a_apple_core = {
+            j_bof_a_core = {
                 name = "Apple Core",
                 text = {
                     "The next {C:attention}#1#{} played",
@@ -82,6 +82,14 @@ return {
                     "held in hand have a",
                     "{C:green}#2# in #3#{} chance of becoming",
                     "{C:attention}Mult Cards{} or {C:attention}Lucky Cards"
+                }
+            },
+            j_bof_a_shrimp = {
+                name = "Shrimp",
+                text = {
+                    "The next {C:attention}#1#{} Booster Pack#<s>1#",
+                    "opened #<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} and",
+                    "a {C:white,X:big}Big{} {C:fish}Fish{} added to #<their,its>1# {C:attention}contents"
                 }
             },
             -- Jesters
@@ -106,8 +114,8 @@ return {
             j_bof_j_tom = {
                 name = "Tumor Tom",
                 text = {
-                    "{C:dark_edition}+#1#{} Joker slots",
-                    "{C:red}-#2#{} consumable slots"
+                    "{C:dark_edition}+#1#{} Joker slot#<s>1#",
+                    "{C:red}-#2#{} consumable slot#<s>2#"
                 }
             },
             j_bof_j_barber = {
@@ -603,6 +611,18 @@ return {
                     "at least once in one run"
                 }
             },
+            b_bof_l_soapy = {
+                name = "Soapy Deck",
+                text = {
+                    "{C:attention}Enhanced{} cards are",
+                    "destroyed when {C:attention}discarded"
+                },
+                unlock = {
+                    "Destroy a card with an",
+                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
+                    "and {C:attention}Seal"
+                }
+            },
             b_bof_l_display = {
                 name = "Display Deck",
                 text = {
@@ -614,18 +634,6 @@ return {
                 unlock = {
                     "Have only one",
                     "{C:attention}rank{} in deck"
-                }
-            },
-            b_bof_l_soapy = {
-                name = "Soapy Deck",
-                text = {
-                    "{C:attention}Enhanced{} cards are",
-                    "destroyed when {C:attention}discarded"
-                },
-                unlock = {
-                    "Destroy a card with an",
-                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
-                    "and {C:attention}Seal"
                 }
             },
             b_bof_l_lightning = {

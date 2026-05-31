@@ -43,11 +43,12 @@ local files = {
             "grapes",
             "leek",
             "durian",
-            "wonderous_bread",
-            "jelly_beans",
+            "bread",
+            "beans",
             "apple",
-            "apple_core",
-            "tomato"
+            "core",
+            "tomato",
+            "shrimp"
 		}, directory = "items/appetizers/"
     },
     jesters = {

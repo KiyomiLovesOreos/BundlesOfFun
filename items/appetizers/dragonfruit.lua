@@ -24,7 +24,7 @@ SMODS.Joker {
             }
         end
 
-        if context.discard then
+        if context.discard and not context.blueprint then
             card.ability.extra.nommed = true
             return {
                 remove = true
@@ -32,8 +32,10 @@ SMODS.Joker {
         end
 
         if (context.drawing_cards or context.after) and card.ability.extra.nommed then
-            SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
             SMODS.destroy_cards(card, true, true, true)
+            return {
+                message = localize("k_eaten_ex")
+            }
         end
     end
 }

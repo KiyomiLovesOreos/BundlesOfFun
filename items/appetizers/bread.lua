@@ -40,8 +40,7 @@ SMODS.Joker {
             else
                 SMODS.destroy_cards(card, nil, nil, true)
                 return {
-                    message = localize("k_eaten_ex"),
-                    colour = G.C.FILTER,
+                    message = localize("k_eaten_ex")
                 }
             end
         end

@@ -39,10 +39,14 @@ SMODS.Joker {
             return {
                 message = return_message,
                 colour = G.C.MULT,
-                func = function ()
+                func = function()
                     if card.ability.extra.mult <= 0 then
-                        SMODS.calculate_effect({ message = localize("k_eaten_ex") }, card)
-                        card:set_ability("j_bof_a_apple_core")
+                        return {
+                            message = localize("k_eaten_ex"),
+                            func = function()
+                                card:set_ability("j_bof_a_apple_core")
+                            end
+                        }
                     end
                 end
             }

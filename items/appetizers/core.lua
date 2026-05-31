@@ -23,18 +23,19 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play and card.ability.extra.count > 0 then
-            card.ability.extra.count = card.ability.extra.count - 1
-            return {
-                mult = card.ability.extra.mult,
-                message_card = context.other_card,
-                func = function ()
-                    if card.ability.extra.count <= 0 then
-                        SMODS.calculate_effect({message = localize("k_eaten_ex")}, card)
-                        SMODS.destroy_cards(card, true, true, true)
-                    end
-                end
-            }
+        if context.individual and context.cardarea == G.play then
+            if card.ability.extra.count <= 0 and not context.blueprint then
+                SMODS.destroy_cards(card, nil, nil, true)
+                return {
+                    message = localize("k_eaten_ex")
+                }
+            else
+                card.ability.extra.count = card.ability.extra.count - 1
+                return {
+                    mult = card.ability.extra.mult,
+                    message_card = context.other_card,
+                }
+            end
         end
         if context.bof_chips_check and card.ability.extra.count > 0 then
             return {
