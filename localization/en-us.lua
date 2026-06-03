@@ -198,7 +198,7 @@ return {
             j_bof_j_golden_sun = {
                 name = "Mr. Golden Sun",
                 text = {
-                    "{C:white,X:mult}X#1#{} Mult",
+                    "Halve base {C:chips}Chips{} and {C:mult}Mult",
                     "{C:red}Destroy{} all cards",
                     "in final {C:attention}discarded",
                     "{C:attention}poker hand{} each round"

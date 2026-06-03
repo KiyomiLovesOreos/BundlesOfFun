@@ -345,7 +345,7 @@ G.FUNCS.skip_blind = function(e)
     if not (back and back.effect and back.effect.center and back.effect.center.key == "b_bof_l_retro") then
         return
     end
-    local amount = (back.effect.center.config and back.effect.center.config.hands) or 4
+    local amount = (back.effect.center.config and back.effect.center.config.extra and back.effect.center.config.extra.hands) or 4
     G.E_MANAGER:add_event(Event({
         trigger = "immediate",
         func = function()
