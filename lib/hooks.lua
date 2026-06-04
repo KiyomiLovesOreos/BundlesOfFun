@@ -357,7 +357,7 @@ G.FUNCS.skip_blind = function(e)
             for _ = 1, picks do
                 local idx = pseudorandom(pseudoseed("b_bof_l_retro"), 1, #pool)
                 local hand = table.remove(pool, idx)
-                level_up_hand(nil, hand, nil, 1)
+                level_up_hand(G.deck.cards[1] or G.deck, hand, nil, 1)
             end
             return true
         end
