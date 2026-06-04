@@ -10,13 +10,13 @@ SMODS.Joker({
 	calculate = function(self, card, context)
 		if context.before then
 			if context.blueprint then
-				context.blueprint_card.ability.modprefix_schlitzohr_card = pseudorandom_element(context.full_hand, self.key).unique_val
+				context.blueprint_card.ability.bof_schlitzohr_card = pseudorandom_element(context.full_hand, self.key).unique_val
 				return nil
 			end
 			card.ability.extra.card = pseudorandom_element(context.full_hand, self.key).unique_val
 		end
 		if context.destroy_card and (context.cardarea == G.play or context.cardarea == "unscored") and G.GAME.current_round.hands_left > 0 then
-			if context.blueprint and (context.destroy_card.unique_val == context.blueprint_card.ability.modprefix_schlitzohr_card) or context.destroy_card.unique_val == card.ability.extra.card then
+			if context.blueprint and (context.destroy_card.unique_val == context.blueprint_card.ability.bof_schlitzohr_card) or context.destroy_card.unique_val == card.ability.extra.card then
 				return {
 					remove = true,
 					func = function()
