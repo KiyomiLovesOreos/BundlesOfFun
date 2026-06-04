@@ -4,9 +4,7 @@ SMODS.Joker {
     config = {
         extra = { 
             xmult = 1.75,
-            active = false,
             active_display = nil,
-            juicing = false
         }
     },
     pos = { x = 9, y = 3 },
@@ -28,23 +26,32 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            if card.ability.extra.active then
+            if G.GAME.current_round.hands_played % 2 == 1 then
                 card.ability.extra.active_display = localize("k_bof_inactive")
-                card.ability.extra.active = false
-                card.ability.extra.juicing = false
-                return {
-                    xmult = card.ability.extra.xmult,
-                    message = "X" .. card.ability.extra.xmult .. " Mult",
-                    colour = G.C.MULT,
-                    sound = BundlesOfFun.config.custom_sounds and "bof_alarm_ring" or "multhit2",
-                    remove_default_message = true
-                }
-            elseif not card.ability.extra.active and not context.blueprint then
+                if not BundlesOfFun.config.custom_sounds then
+                    return {
+                        xmult = card.ability.extra.xmult
+                    }
+                else
+                    return {
+                        xmult = card.ability.extra.xmult,
+                        xmult_message = {
+                            message = localize({
+                                type = "variable",
+                                key = "a_xmult",
+                                vars = {
+                                    card.ability.extra.xmult
+                                }
+                            }),
+                            colour = G.C.MULT,
+                            sound = "bof_alarm_ring",
+                        },
+                    }
+                end
+            elseif not context.blueprint then
                 card.ability.extra.active_display = localize("k_bof_active")
-                card.ability.extra.active = true
-                card.ability.extra.juicing = true
                 local eval = function()
-                    return card.ability.extra.juicing == true
+                    return G.GAME.current_round.hands_played % 2 == 1
                 end
                 juice_card_until(card, eval, true)
                 return {
