@@ -17,7 +17,7 @@ SMODS.Back {
             end
         end
         local suit = pseudorandom_element(all_suits, pseudoseed("b_bof_display"))
-        self.initial_deck.Suits = { suit.key }
+        self.initial_deck = { Suits = { suit.key } }
         G.GAME.bof_display_initial_card_key = suit.card_key
     end,
     calculate = function(self, back, context)
