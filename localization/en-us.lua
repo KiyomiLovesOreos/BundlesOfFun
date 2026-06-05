@@ -266,8 +266,8 @@ return {
             j_bof_j_felix = {
                 name = "Furious Felix",
                 text = {
-                    "Earn {C:money}$#1#{} at end",
-                    "of round",
+                    "Earn {C:money}$#1#{} at",
+                    "end of round",
                     "Earn no {C:attention}interest"
                 }
             },
