@@ -65,26 +65,9 @@ SMODS.Joker {
                 G.GAME.bof_blueprint_total_hands_played = (G.GAME.bof_total_hands_played or 0) + 1
                 if G.GAME.bof_blueprint_total_hands_played % 2 == 0 then
                     card.ability.extra.active_display = localize("k_bof_inactive")
-                    if not BundlesOfFun.config.custom_sounds then
-                        return {
-                            xmult = card.ability.extra.xmult
-                        }
-                    else
-                        return {
-                            xmult = card.ability.extra.xmult,
-                            xmult_message = {
-                                message = localize({
-                                    type = "variable",
-                                    key = "a_xmult",
-                                    vars = {
-                                        card.ability.extra.xmult
-                                    }
-                                }),
-                                colour = G.C.MULT,
-                                sound = "bof_alarm_ring",
-                            },
-                        }
-                    end
+                    return {
+                        xmult = card.ability.extra.xmult
+                    }
                 end
             end
         end
