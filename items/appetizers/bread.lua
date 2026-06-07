@@ -35,7 +35,7 @@ SMODS.Joker {
                 card.ability.extra.balance = card.ability.extra.balance - card.ability.extra.balance_mod
                 return {
                     message = "-" .. card.ability.extra.balance_mod .. "%",
-                    colour = { 0.8, 0.45, 0.85, 1 }
+                    colour = G.C.PLASMA
                 }
             else
                 SMODS.destroy_cards(card, nil, true, true)
