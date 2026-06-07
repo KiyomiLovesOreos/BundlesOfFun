@@ -30,18 +30,13 @@ SMODS.Back {
             G.E_MANAGER:add_event(Event({
                 func = function()
                     for _, suit in pairs(SMODS.Suits) do
-                        local front = G.P_CARDS[suit.card_key .. "_" .. rank.card_key]
-                        if front then
-                            G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                            local new_card = create_playing_card({ front = front }, G.deck, true, nil, nil)
-                            new_card:add_to_deck()
-                            G.deck:emplace(new_card)
-                            new_card:start_materialize()
-                            G.deck.config.card_limit = G.deck.config.card_limit + 1
-                            table.insert(G.playing_cards, new_card)
-                            new_card.states.visible = nil
-                            SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
-                        end
+                        SMODS.add_card({
+                            suit = suit.card_key,
+                            rank = rank.card_key,
+                            area = G.deck,
+                            set = "Base",
+                            key_append = "b_bof_l_embroidered"
+                        })
                     end
                     return true
                 end

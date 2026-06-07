@@ -40,17 +40,16 @@ SMODS.Back {
             end
             local suit = pseudorandom_element(available, pseudoseed("b_bof_display"))
             G.GAME.bof_display_used_suits[suit.card_key] = true
-            local suit_key = suit.card_key
             G.E_MANAGER:add_event(Event({
                 func = function()
                     for _, rank in pairs(SMODS.Ranks) do
-                        local front = G.P_CARDS[suit_key .. "_" .. rank.card_key]
-                        if front then
-                            G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-                            local new_card = create_playing_card({ front = front }, G.deck, true, nil, nil)
-                            new_card:add_to_deck()
-                            G.deck.config.card_limit = G.deck.config.card_limit + 1
-                        end
+                        SMODS.add_card({
+                            suit = suit.card_key,
+                            rank = rank.card_key,
+                            area = G.deck,
+                            set = "Base",
+                            key_append = "b_bof_l_display"
+                        })
                     end
                     return true
                 end
