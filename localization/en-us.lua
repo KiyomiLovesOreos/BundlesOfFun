@@ -121,9 +121,11 @@ return {
             j_bof_j_barber = {
                 name = "Barber",
                 text = {
-                    "Destroy a random",
-                    "{C:attention}card{} in deck when",
-                    "{C:attention}Blind{} is selected"
+                    "Remove {C:attention}Enhancement{} of",
+                    "{C:attention}#1#{} random card#<s>1# in deck",
+                    "and gain {C:mult}+#2#{} Mult",
+                    "when {C:attention}Blind{} is selected",
+                    "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },
             j_bof_j_ballbo = {
@@ -330,8 +332,8 @@ return {
             --         "played hand that {C:attention}retriggered"
             --     }
             -- },
-            j_bof_j_sword_swallower = {
-                name = "Sword Swallower",
+            j_bof_j_zeke = {
+                name = "Zipper Zeke",
                 text = {
                     "{C:green}#1# in #2#{} chance to create",
                     "a non-{C:common}Common{} Joker when",
@@ -377,7 +379,7 @@ return {
                         "when {C:attention}Blind{} is selected"
                     },
                     {
-                        "{C:red}Remove{} two {C:dark_edition}stickers",
+                        "Remove two {C:dark_edition}stickers",
                         "and earn {C:money}$#1#",
                         "when {C:attention}Boss Blind",
                         "is defeated"
