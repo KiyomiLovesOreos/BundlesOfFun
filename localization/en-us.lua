@@ -309,10 +309,10 @@ return {
             j_bof_j_schlitzohr = {
                 name = "Schlitzohr",
                 text = {
-                    "Destroy a random {C:attention}card",
-                    "in played hand",
-                    "This Joker cannot destroy cards",
-                    "played on {C:attention}final hand{} of round"
+                    "Randomize the {C:attention}rank{} of",
+                    "the {C:attention}#1#{} lowest ranked",
+                    "cards in your deck",
+                    "when {C:attention}Blind{} is selected"
                 }
             },
             j_bof_j_hotboxer = {

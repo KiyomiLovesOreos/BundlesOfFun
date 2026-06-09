@@ -1,45 +1,85 @@
 SMODS.Joker({
 	key = "j_schlitzohr",
 	name = "Schlitzohr",
-	config = { extra = { card = nil } },
+	config = { extra = { cards = 4 } },
 	pos = { x = 4, y = 2 },
-	cost = 8,
-	rarity = 3,
-	blueprint_compat = true,
+	cost = 6,
+	rarity = 2,
+	blueprint_compat = false,
 	atlas = "joker",
+	loc_vars = function(self, info_queue, card)
+		return { vars = { card.ability.extra.cards } }
+	end,
 	calculate = function(self, card, context)
-		if context.before then
-			if context.blueprint then
-				local available_cards = {}
-				for _, c in ipairs(context.full_hand) do
-					if c.unique_val ~= card.ability.extra.card then
-						table.insert(available_cards, c)
-					end
-				end
-				if #available_cards > 0 then
-					context.blueprint_card.ability.bof_schlitzohr_card = pseudorandom_element(available_cards, self.key).unique_val
-				else
-					context.blueprint_card.ability.bof_schlitzohr_card = nil
-				end
-				return nil
-			end
-			card.ability.extra.card = pseudorandom_element(context.full_hand, self.key).unique_val
-		end
-		if context.destroy_card and (context.cardarea == G.play or context.cardarea == "unscored") and G.GAME.current_round.hands_left > 0 then
-			if (context.blueprint and context.blueprint_card.ability.bof_schlitzohr_card and context.destroy_card.unique_val == context.blueprint_card.ability.bof_schlitzohr_card) or context.destroy_card.unique_val == card.ability.extra.card then
+		if context.setting_blind then
+			G.E_MANAGER:add_event(Event({
+			trigger = "after",
+			delay = 0.4,
+			func = function()
 				local card = context.blueprint_card or card
-				return {
-					remove = true,
+				play_sound("tarot1")
+				card:juice_up(0.3, 0.5)
+				return true
+			end
+			}))
+			for i = 1, card.ability.extra.cards do
+				local percent = 1.15 - (i - 0.999) / (card.ability.extra.cards - 0.998) * 0.3
+				G.E_MANAGER:add_event(Event({
+					trigger = 'after',
+					delay = 0.15,
 					func = function()
+						play_sound("card1", percent)
+						return true
+					end
+				}))
+			end
+			G.E_MANAGER:add_event(Event({
+				trigger = "after",
+				delay = 0.4,
+				func = function()
+					G.E_MANAGER:add_event(Event({
+						trigger = "after",
+						delay = 0.15,
+						func = function()
+							if G.deck and G.deck.cards then
+								local sorted_cards = {}
+								for _, c in ipairs(G.deck.cards) do
+									table.insert(sorted_cards, c)
+								end
+								table.sort(sorted_cards, function(a, b) return (a:get_id() or 0) < (b:get_id() or 0) end)
+								local target_cards = {}
+								for i = 1, math.min(card.ability.extra.cards, #sorted_cards) do
+									table.insert(target_cards, sorted_cards[i])
+								end
+								for i, target_card in ipairs(target_cards) do
+									G.E_MANAGER:add_event(Event({
+										trigger = "after",
+										delay = 0.15,
+										func = function()
+											local _rank = pseudorandom_element(SMODS.Ranks, "random_rank")
+											assert(SMODS.change_base(target_card, nil, _rank.key))
+											return true
+										end
+									}))
+								end
+							end
+							return true
+						end
+					}))
+					for i = 1, card.ability.extra.cards do
+						local percent = 0.85 + (i - 0.999) / (card.ability.extra.cards - 0.998) * 0.3
 						G.E_MANAGER:add_event(Event({
+							trigger = "after",
+							delay = 0.15,
 							func = function()
-								card:juice_up(0.3, 0.5)
+								play_sound("tarot2", percent, 0.6)
 								return true
 							end
 						}))
 					end
-				}
-			end
+					return true
+				end
+			}))
 		end
 	end
 })
