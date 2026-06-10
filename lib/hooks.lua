@@ -498,54 +498,59 @@ SMODS.calculate_repetitions = function(card, context, reps)
     return g
 end
 
--- -- make it so that perkeo can't copy legendary fish
--- local legendary_fish_keys = {
---     "c_bof_i_bass_l",
---     "c_bof_i_betta_l",
---     "c_bof_i_goldfish_l",
---     "c_bof_i_trout_l"
--- }
+-- make it so that perkeo can't copy legendary fish
+local legendary_fish_keys = {
+    "c_bof_i_bass_l",
+    "c_bof_i_betta_l",
+    "c_bof_i_goldfish_l",
+    "c_bof_i_trout_l"
+}
 
--- SMODS.Joker:take_ownership("perkeo", {
---     name = "Perkeo (Bundles Of Fun)",
---     loc_vars = function(self, info_queue, card)
---         local main_end
---         if G.consumeables and G.consumeables.cards then
---             for _, consumable in ipairs(G.consumeables.cards) do
---                 if consumable.config.center and consumable.config.center.key then
---                     for _, legendary_key in ipairs(legendary_fish_keys) do
---                         if consumable.config.center.key == legendary_key then
---                             main_end = {}
---                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
---                             break
---                         end
---                     end
---                     if main_end then break end
---                 end
---             end
---         end
---         return { vars = { card.ability.extra }, main_end = main_end }
---     end,
---     calculate = function(self, card, context)
---         if context.ending_shop then
---             local eligibleJokers = {}
---             for k, v in pairs(G.consumeables.cards) do
---                 if v.ability.consumeable and not SMODS.in_scoring(v.config.center.key, legendary_fish_keys) then
---                     table.insert(eligibleJokers, v)
---                 end
---             end
---             if #eligibleJokers > 0 then
---                 G.E_MANAGER:add_event(Event({
---                     func = function() 
---                         local card = copy_card(pseudorandom_element(eligibleJokers, pseudoseed("perkeo")), nil)
---                         card:set_edition({ negative = true }, true)
---                         card:add_to_deck()
---                         G.consumeables:emplace(card) 
---                         return true
---                     end}))
---                 card_eval_status_text(context_blueprint_card or self, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
---                 return nil, true
---             end
---         end
---     end
--- })
+SMODS.Joker:take_ownership("perkeo", {
+    name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    loc_vars = function(self, info_queue, card)
+        local main_end = {}
+        if G.consumeables and G.consumeables.cards then
+            print("consumables exists wow")
+            for _, consumable in ipairs(G.consumeables.cards) do
+                print("iteration")
+                if consumable.config.center and consumable.config.center.key then
+                    print("center key: " .. consumable.config.center.key)
+                    for _, legendary_key in ipairs(legendary_fish_keys) do
+                        if consumable.config.center.key == legendary_key then
+                            print("wowie zowie localize go")
+                            localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
+                            break
+                        end
+                    end
+                    if main_end then break end
+                end
+            end
+        end
+        return { vars = { card.ability.extra }, main_end = main_end[1] }
+    end,
+    calculate = function(self, card, context)
+        if context.ending_shop then
+            local eligibleJokers = {}
+            for k, v in pairs(G.consumeables.cards) do
+                if v.ability.consumeable and not SMODS.in_scoring(v.config.center.key, legendary_fish_keys) then
+                    table.insert(eligibleJokers, v)
+                end
+            end
+            if #eligibleJokers > 0 then
+                G.E_MANAGER:add_event(Event({
+                    func = function() 
+                        local card = copy_card(pseudorandom_element(eligibleJokers, pseudoseed("perkeo")), nil)
+                        card:set_edition({ negative = true }, true)
+                        card:add_to_deck()
+                        G.consumeables:emplace(card) 
+                        return true
+                    end}))
+                card_eval_status_text(context_blueprint_card or card, "extra", nil, nil, nil, { message = localize("k_duplicated_ex") })
+                return nil, true
+            else
+                return true
+            end
+        end
+    end
+}, true)

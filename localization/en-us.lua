@@ -901,7 +901,13 @@ return {
                     "Choose {C:attention}#1#{} of up to",
                     "{C:attention}#2# {C:white,X:big}Big{} {C:fish}Fish{} cards"
                 }
-            }
+            },
+            k_bof_perkeo_legendary = {
+                name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+                text = {
+                    "{C:inactive,s:0.8}(Cannot copy {C:white,s:0.8,X:legendary}Legendary{C:inactive,s:0.8} Fish)"
+                }
+            } 
         }
     },
     misc = {
@@ -919,7 +925,6 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
-            k_bof_perkeo_legendary = "Cannot copy {C:white,X:legendary}Legendary{C:inactive} Fish",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",
