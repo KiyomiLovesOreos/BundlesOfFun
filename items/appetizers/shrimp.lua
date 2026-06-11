@@ -18,6 +18,7 @@ SMODS.Joker {
         return { vars = { card.ability.extra.packs } }
     end,
     add_to_deck = function(self, card)
+        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod + 2
     end,
     calculate = function(self, card, context)
@@ -61,6 +62,7 @@ SMODS.Joker {
         end
     end,
     remove_from_deck = function(self, card)
+        G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod or 0
         G.GAME.modifiers.booster_size_mod = G.GAME.modifiers.booster_size_mod - 2
     end
 }
