@@ -37,7 +37,7 @@ SMODS.Joker {
             }
         end
         if context.beat_boss and context.main_eval and not context.blueprint then
-            SMODS.destroy_cards(card, nil, true, true)
+            SMODS.destroy_cards(card, { pinch_anim = true })
             return {
                 message = localize("k_eaten_ex")
             }

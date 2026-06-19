@@ -157,8 +157,6 @@ local files = {
     -- }
 }
 
--- todo: make it so that a custom message appears instructing the player to enable all bundles if the game crashes due to the fact that a required one is disabled
-
 if BundlesOfFun.config.bundles.appetizers then
     for _, name in ipairs(files["appetizers"].list) do
         assert(SMODS.load_file(files["appetizers"].directory .. name .. ".lua"))()

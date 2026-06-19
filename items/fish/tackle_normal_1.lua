@@ -12,7 +12,7 @@ SMODS.Booster {
     select_card = "consumeables",
     weight = 0.3,
     cost = 4,
-    atlas = "placeholder",
+    atlas = "pack",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

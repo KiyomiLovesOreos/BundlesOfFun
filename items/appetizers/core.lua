@@ -26,7 +26,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
             if card.ability.extra.count <= 0 and not context.blueprint then
-                SMODS.destroy_cards(card, nil, true, true)
+                SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }

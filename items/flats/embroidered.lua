@@ -17,7 +17,7 @@ SMODS.Back {
                 local rank = pseudorandom_element(all_ranks, pseudoseed("bof_embroidered_inital_rank"))
                 for _, playing_card in ipairs(G.playing_cards) do
                     if playing_card:get_id() == rank.id then
-                        SMODS.destroy_cards(playing_card, nil, true)
+                        SMODS.destroy_cards(playing_card, { immediate = true })
                     end
                 end
                 return true

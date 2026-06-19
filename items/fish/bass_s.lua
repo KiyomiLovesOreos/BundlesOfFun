@@ -35,7 +35,7 @@ SMODS.Consumable {
                     message = card.ability.extra.rounds_remaining .. " Round" .. (card.ability.extra.rounds_remaining > 1 and "s" or "") .. " Remaining!"
                 }
             else
-                SMODS.destroy_cards(card, nil, true, true)
+                SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }

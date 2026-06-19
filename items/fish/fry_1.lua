@@ -5,14 +5,14 @@ SMODS.Booster {
         extra = 3,
         choose = 1
     },
-    pos = { x = 0, y = 0 },
+    pos = { x = 0, y = 1 },
     draw_hand = false,
     group_key = "k_bof_fry",
     kind = "bof_fish",
     select_card = "consumeables",
     weight = 0.3,
     cost = 6,
-    atlas = "placeholder",
+    atlas = "pack",
     loc_vars = function(self, info_queue, card)
         return {
             vars = {

@@ -46,7 +46,7 @@ SMODS.Joker {
         end
         if context.final_scoring_step and not context.blueprint and card.ability.extra.change then
             if card.ability.extra.amount <= 0 then
-                SMODS.destroy_cards(card, nil, true, true)
+                SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }

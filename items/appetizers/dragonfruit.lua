@@ -13,13 +13,7 @@ SMODS.Joker {
         if context.before then
             card:juice_up(0.3, 0.5)
             for i, v in ipairs(context.full_hand) do
-				local new_card = copy_card(context.full_hand[i])
-				G.deck.config.card_limit = G.deck.config.card_limit + #context.full_hand
-				table.insert(G.playing_cards, new_card)
-				new_card:add_to_deck()
-				G.deck:emplace(new_card)
-                table.insert(G.playing_cards, new_card)
-                new_card.states.visible = nil
+                local new_card = SMODS.copy_card(context.full_hand[i], { area = G.deck })
                 new_card:start_materialize()
                 SMODS.calculate_context({ playing_card_added = true, cards = { new_card } })
             end
@@ -36,7 +30,7 @@ SMODS.Joker {
             }
         end
         if (context.drawing_cards or context.after) and card.ability.extra.nommed then
-            SMODS.destroy_cards(card, nil, true, true)
+            SMODS.destroy_cards(card, { pinch_anim = true })
             return {
                 message = localize("k_eaten_ex")
             }

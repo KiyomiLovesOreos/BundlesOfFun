@@ -44,7 +44,7 @@ SMODS.Joker {
         end
         if context.ending_booster then
             if card.ability.extra.packs <= 1 then
-                SMODS.destroy_cards(card, nil, true, true)
+                SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }

@@ -111,23 +111,6 @@ function Card:get_chip_bonus()
 	end
 end
 
--- make tumor tom unable to be sold when there isn't enough room in joker slots
-local can_sell_card_old = G.FUNCS.can_sell_card
-G.FUNCS.can_sell_card = function(e)
-	local card = e.config.ref_table
-	if card.config.center.key == "j_bof_j_tom" and card:can_sell_card() then
-        if G.jokers and (#G.jokers.cards >= (G.jokers.config.card_limit - 1)) then
-            e.config.colour = G.C.GREEN
-            e.config.button = "sell_card"   
-        else
-            e.config.colour = G.C.UI.BACKGROUND_INACTIVE
-            e.config.button = nil
-        end
-	else
-		can_sell_card_old(e)
-	end
-end
-
 -- eureka logic
 SMODS.Booster:take_ownership_by_kind("Arcana", {
         create_card = function(self, card, i)
@@ -487,7 +470,7 @@ function Card:load(cardTable, other_card)
     return oldcardload(self, cardTable, other_card)
 end
 
--- director logic (currently tracks all triggers and i can't get it to be otherwise)
+-- director condition logic
 local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 SMODS.calculate_repetitions = function(card, context, reps)
     card.bof_retriggered = nil
@@ -511,14 +494,10 @@ SMODS.Joker:take_ownership("perkeo", {
     loc_vars = function(self, info_queue, card)
         local main_end = {}
         if G.consumeables and G.consumeables.cards then
-            print("consumables exists wow")
             for _, consumable in ipairs(G.consumeables.cards) do
-                print("iteration")
                 if consumable.config.center and consumable.config.center.key then
-                    print("center key: " .. consumable.config.center.key)
                     for _, legendary_key in ipairs(legendary_fish_keys) do
                         if consumable.config.center.key == legendary_key then
-                            print("wowie zowie localize go")
                             localize { type = "other", key = "k_bof_perkeo_legendary", nodes = main_end }
                             break
                         end

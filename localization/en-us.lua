@@ -924,7 +924,12 @@ return {
                 text = {
                     "{C:inactive,s:0.8}(Cannot copy {C:white,s:0.8,X:legendary}Legendary{C:inactive,s:0.8} Fish)"
                 }
-            } 
+            },
+            k_bof_tom_sell = {
+                text = {
+                    "{C:inactive,s:0.8}(Cannot be sold when slots are full)"
+                }
+            }
         }
     },
     misc = {

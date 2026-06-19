@@ -24,7 +24,7 @@ SMODS.Joker {
             card:juice_up(0.4, 0.4)
             play_sound("tarot1")
             if card.ability.extra.blinds <= 0 and not context.blueprint then
-                SMODS.destroy_cards(card, true, nil, true)
+                SMODS.destroy_cards(card, { pinch_anim = true })
                 return {
                     message = localize("k_eaten_ex")
                 }
