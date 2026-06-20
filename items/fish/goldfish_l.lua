@@ -6,7 +6,7 @@ SMODS.Consumable {
     pos = { x = 5, y = 1 },
     config = { card_limit = 1 },
     cost = 20,
-    unlock = false,
+    unlocked = false,
     hidden = true,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)

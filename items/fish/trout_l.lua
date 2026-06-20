@@ -9,7 +9,7 @@ SMODS.Consumable {
         extra = { xmult = 1.25 }
     },
     cost = 20,
-    unlock = false,
+    unlocked = false,
     hidden = true,
     atlas = "consumable",
     loc_vars = function(self, info_queue, card)
