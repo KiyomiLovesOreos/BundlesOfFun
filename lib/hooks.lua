@@ -149,8 +149,6 @@ SMODS.Booster:take_ownership_by_kind("Arcana", {
             return _card
         end
 }, true)
-
--- eureka logic cont.
 SMODS.Booster:take_ownership_by_kind("Celestial", {
     update_pack = function(self, dt)
         local state_wasnt_complete = not G.STATE_COMPLETE
@@ -216,8 +214,6 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
         return _card
     end
 }, true)
-
--- eureka logic cont.
 SMODS.Booster:take_ownership_by_kind("Spectral", {
     create_card = function(self, card, i)
 		local _card
@@ -267,8 +263,6 @@ function Back:apply_to_run()
         end
     end
 end
-
--- wooden deck effect cont.
 local atpref = SMODS.add_to_pool
 SMODS.add_to_pool = function (prototype_obj, args)
     if G.GAME and G.GAME.starting_params and (G.GAME.starting_params.wooden_no_aces or G.GAME.starting_params.no_aces) then
@@ -280,7 +274,7 @@ SMODS.add_to_pool = function (prototype_obj, args)
     return original_result
 end
 
--- soapy/wooden deck unlock
+-- soapy deck unlock
 local original_card_remove = Card.remove
 function Card:remove()
     if next(SMODS.get_enhancements(self)) ~= nil and self.edition ~= nil and self.seal ~= nil then
@@ -293,31 +287,7 @@ function Card:remove()
             end
         end
     end
-    if G.GAME and G.GAME.blind and self:get_id() == 14 then
-        if not G.GAME.bof_wooden_destroyed then
-            G.GAME.bof_wooden_destroyed = 0
-        end
-        G.GAME.bof_wooden_destroyed = G.GAME.bof_wooden_destroyed + 1
-        if G.GAME.bof_wooden_destroyed >= 4 then
-            for k, deck in pairs(G.P_CENTERS) do
-                if deck.key == "b_bof_l_wooden" and deck.check_for_unlock then
-                    local unlocked = deck:check_for_unlock()
-                    if unlocked then
-                        G.GAME.bof_wooden_destroyed = 0
-                    end
-                    break
-                end
-            end
-        end
-    end
     return original_card_remove(self)
-end
-
--- wooden deck unlock cont.
-local original_end_round = end_round
-function end_round()
-    G.GAME.bof_wooden_destroyed = 0
-    return original_end_round()
 end
 
 -- retro deck: level up 4 random poker hands when a blind is skipped
@@ -488,7 +458,6 @@ local legendary_fish_keys = {
     "c_bof_i_goldfish_l",
     "c_bof_i_trout_l"
 }
-
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     loc_vars = function(self, info_queue, card)

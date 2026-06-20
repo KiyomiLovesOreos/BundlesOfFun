@@ -20,8 +20,22 @@ SMODS.Atlas({
 })
 
 SMODS.Atlas({
+    key = "wooden", 
+    path = "wooden.png", 
+    px = 71,
+    py = 95, 
+})
+
+SMODS.Atlas({
     key = "consumable", 
     path = "consumable.png", 
+    px = 71,
+    py = 95,
+})
+
+SMODS.Atlas({
+    key = "fish_blank", 
+    path = "fish_blank.png", 
     px = 71,
     py = 95,
 })
@@ -31,13 +45,6 @@ SMODS.Atlas({
     path = "pack.png", 
     px = 71,
     py = 95,
-})
-
-SMODS.Atlas({
-    key = "wooden", 
-    path = "wooden.png", 
-    px = 71,
-    py = 95, 
 })
 
 SMODS.Sound({
@@ -112,6 +119,29 @@ SMODS.ObjectType({
     select_card = "consumeables",
     default = "c_bof_i_bass_l"
 })
+
+SMODS.UndiscoveredSprite({
+    key = "Fish",
+    atlas = "fish_blank",
+    pos = { x = 0, y = 0 }
+})
+
+SMODS.current_mod.calculate = function(self, context)
+    if context.remove_playing_cards then
+        local aces = 0
+        for k, v in pairs(context.removed or {}) do
+            if v:get_id() == 14 then aces = aces + 1 end
+        end
+        if aces >= 4 then
+            for k, deck in pairs(G.P_CENTERS) do
+                if deck.key == "b_bof_l_wooden" and deck.check_for_unlock then
+                    deck:check_for_unlock()
+                    break
+                end
+            end
+        end
+    end
+end
 
 SMODS.current_mod.optional_features = {
 	retrigger_joker = true
