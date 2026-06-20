@@ -4,7 +4,7 @@ SMODS.Joker({
 	config = {
 		extra = {
 			shop_slots = 1,
-			sell_cost_mod = 2
+			sell_cost_mod = 1
 		}
 	},
 	pos = { x = 0, y = 3 },
