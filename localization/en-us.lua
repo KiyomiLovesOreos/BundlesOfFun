@@ -929,7 +929,14 @@ return {
                 text = {
                     "{C:inactive,s:0.8}(Cannot be sold when slots are full)"
                 }
-            }
+            },
+            modification = {
+				name = "Modification",
+				text = {
+					"{C:enhanced}Enhancement{},",
+                    "{C:dark_edition}Edition{}, or {C:attention}Seal"
+				}
+			}
         }
     },
     misc = {
