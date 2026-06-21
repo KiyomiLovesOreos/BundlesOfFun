@@ -3,8 +3,8 @@ SMODS.Joker {
     name = "Barber",
     config = {
         extra = {
-            cards = 1,
             mult_mod = 3,
+            cards = 1,
             mult = 0,
         }
     },
@@ -16,8 +16,8 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {
             vars = {
-                card.ability.extra.cards,
                 card.ability.extra.mult_mod,
+                card.ability.extra.cards,
                 card.ability.extra.mult
             }
         }

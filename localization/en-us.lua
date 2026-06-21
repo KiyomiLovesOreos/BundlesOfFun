@@ -87,9 +87,9 @@ return {
             j_bof_a_shrimp = {
                 name = "Fried Shrimp",
                 text = {
-                    "The next {C:attention}#1#{} Booster Pack#<s>1#",
-                    "opened #<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} and",
-                    "a {C:white,X:big}Big{} {C:fish}Fish{} added to #<their,its>1# {C:attention}contents"
+                    "The next {C:attention}#1#{} Booster Pack#<s>1# opened",
+                    "#<have,has>1# a {C:white,X:small}Small{} {C:fish}Fish{} card and a",
+                    "{C:white,X:big}Big{} {C:fish}Fish{} card added to #<their,its>1# {C:attention}contents"
                 }
             },
             -- Jesters
@@ -122,9 +122,9 @@ return {
                 name = "Barber",
                 text = {
                     "When {C:attention}Blind{} is selected,",
+                    "gain {C:mult}+#1#{} Mult and",
                     "remove {C:attention}Enhancement{} of",
-                    "{C:attention}#1#{} random card#<s>1# in deck",
-                    "and gain {C:mult}+#2#{} Mult",
+                    "{C:attention}#2#{} random card#<s>2# in deck",
                     "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult)"
                 }
             },

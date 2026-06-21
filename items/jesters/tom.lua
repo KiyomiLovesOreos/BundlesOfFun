@@ -12,7 +12,7 @@ SMODS.Joker {
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         local main_end = {}
-        if G.jokers and (#G.jokers.cards >= G.jokers.config.card_limit) then
+        if G.jokers and (#G.jokers.cards >= G.jokers.config.card_limit) and next(SMODS.find_card("j_bof_j_tom")) then
             localize({ type = "other", key = "k_bof_tom_sell", nodes = main_end })
         end
         return {
