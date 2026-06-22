@@ -13,17 +13,21 @@ SMODS.Joker {
         return { vars = { card.ability.extra.mult } }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.hand and not context.end_of_round then
-            return {
-                mult = card.ability.extra.mult
-            }
-        end
         if context.before and not context.blueprint then
             for k, v in ipairs(G.hand.cards) do
                 if v.base.value then
                     v:set_ability("c_base", nil, true)
                     v:set_edition(nil, nil, nil, true)
-                    v:set_seal(nil)
+                    if v.seal then
+                        v.ability.bof_delay_seal_removal = true
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                v:set_seal(nil)
+                                v.ability.bof_delay_seal_removal = nil
+                                return true
+                            end
+                        }))
+                    end
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             v:juice_up()
@@ -34,6 +38,11 @@ SMODS.Joker {
             end
             return {
                 message = localize("k_erased")
+            }
+        end
+        if context.individual and context.cardarea == G.hand and not context.end_of_round then
+            return {
+                mult = card.ability.extra.mult
             }
         end
     end

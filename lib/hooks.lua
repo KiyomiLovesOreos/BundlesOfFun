@@ -447,6 +447,15 @@ function Card:load(cardTable, other_card)
     return oldcardload(self, cardTable, other_card)
 end
 
+-- eraser: prevent seal from triggering when marked for removal
+local old_calculate_seal = Card.calculate_seal
+function Card:calculate_seal(context, ...)
+    if self.ability.bof_delay_seal_removal then
+        return nil
+    end
+    return old_calculate_seal(self, context, ...)
+end
+
 -- director condition logic
 local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 SMODS.calculate_repetitions = function(card, context, reps)
