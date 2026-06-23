@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Passport",
     config = {
         extra = {
-            chips_mod = 20,
+            chips_mod = 30,
             chips = 0,
             gonna_go = true
         }

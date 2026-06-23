@@ -356,13 +356,12 @@ return {
                     "{C:inactive}(Multiplicative)"
                 }
             },
-            j_bof_j_firedancer = {
-                name = "Firedancer",
+            j_bof_j_angler = {
+                name = "Angler",
                 text = {
-                    "If {C:attention}final hand{} of",
-                    "round exceeds score",
-                    "requirement, earn",
-                    "{C:money}$#1#{} at end of round"
+                    "{C:chips}+#1#{} Chips and {C:mult}+#2#{} Mult for",
+                    "every {C:fish}Fish{} card held",
+                    "{C:inactive}(Currently {C:chips}+#3#{C:inactive} Chips and {C:mult}+#4#{C:inactive} Mult)"
                 }
             },
             j_bof_j_pianoman = {

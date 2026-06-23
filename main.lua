@@ -80,7 +80,7 @@ local files = {
             "director",
             "zeke",
             "laughing_stock",
-            "firedancer",
+            "angler",
             "pianoman"
         }, directory = "items/jesters/"
     },

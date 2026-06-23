@@ -77,7 +77,6 @@ SMODS.Joker {
                             stickers_on_card[#stickers_on_card + 1] = k
                         end
                     end
-                    
                     if #stickers_on_card > 0 then
                         local sticker_to_remove = pseudorandom_element(stickers_on_card, pseudoseed("j_bof_n_notebook"))
                         target_joker:remove_sticker(sticker_to_remove, true)
