@@ -416,10 +416,10 @@ return {
                         "per {C:attention}unique Blind{} defeated",
                         "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chip#<s>2#)"
                     },
-                    {
-                        "{C:attention}Boss Blinds{} may",
-                        "appear multiple times"
-                    }
+                    -- {
+                    --     "{C:attention}Boss Blinds{} may",
+                    --     "appear multiple times"
+                    -- }
                 }
             },
             j_bof_n_clock_inactive = {
