@@ -153,7 +153,7 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
     update_pack = function(self, dt)
         local state_wasnt_complete = not G.STATE_COMPLETE
         SMODS.Booster.update_pack(self, dt)
-        if next(SMODS.find_card("eureka")) and state_wasnt_complete then
+        if next(SMODS.find_card("j_bof_eureka")) and state_wasnt_complete then
             G.E_MANAGER:add_event(Event({
                 trigger = "immediate",
                 func = function()
@@ -217,7 +217,7 @@ SMODS.Booster:take_ownership_by_kind("Celestial", {
 SMODS.Booster:take_ownership_by_kind("Spectral", {
     create_card = function(self, card, i)
 		local _card
-		if next(SMODS.find_card("eureka")) and pseudorandom("eureka") > 0.8 then
+		if next(SMODS.find_card("j_bof_eureka")) and pseudorandom("j_bof_eureka") > 0.8 then
             _card = {
                 set = "Tarot",
                 area = G.pack_cards,
