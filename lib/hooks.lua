@@ -438,15 +438,6 @@ function SMODS.create_card(t)
     return original_smods_create_card(t)
 end
 
--- display a custom crash message when a card fails to load
-local oldcardload = Card.load
-function Card:load(cardTable, other_card)
-    if not G.P_CENTERS[cardTable.save_fields.center] and cardTable.save_fields.center:find("bof_") then
-        error("A Joker from a disabled bundle in Bundles Of Fun is present in your continued run. Please enable all bundles in the mod settings and restart Balatro.")
-    end
-    return oldcardload(self, cardTable, other_card)
-end
-
 -- eraser: prevent seal from triggering when marked for removal
 local old_calculate_seal = Card.calculate_seal
 function Card:calculate_seal(context, ...)

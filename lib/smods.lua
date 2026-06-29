@@ -142,6 +142,14 @@ SMODS.Sound({
 })
 
 SMODS.Sound({
+    key = "music_fish",
+    path = "music_fish.ogg",
+    select_music_track = function()
+        return G.booster_pack and not G.booster_pack.REMOVED and SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.config.center.kind == "bof_fish" and 100 or nil
+    end
+})
+
+SMODS.Sound({
 	key = "alarm_wind",
 	path = "alarm_wind.ogg",
 	loop = false
