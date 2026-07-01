@@ -64,17 +64,17 @@ end
 
 local function bof_credit_title(name, role, colour)
     return { n = G.UIT.R, config = { align = "cm", padding = 0.1 }, nodes = {
-        { n = G.UIT.T, config = { text = name .. " - " .. role, scale = 0.5, colour = colour, shadow = true } }
+        { n = G.UIT.T, config = { text = name .. " - " .. role, scale = 0.4, colour = colour, shadow = true } }
     }}
 end
 
 local function bof_credit_description(description)
     return { n = G.UIT.R, config = { align = "cm", padding = 0.05 }, nodes = {
-        { n = G.UIT.T, config = { text = description, scale = 0.35, colour = G.C.WHITE, shadow = true } }
+        { n = G.UIT.T, config = { text = description, scale = 0.3, colour = G.C.WHITE, shadow = true } }
     }}
 end
 
-george = SMODS.Gradient{
+local george = SMODS.Gradient{
     key = "george_the_rat",
     colours = {
         G.C.bof_george_1,
@@ -82,7 +82,7 @@ george = SMODS.Gradient{
     },
     cycle = 5
 }
-glitch = SMODS.Gradient {
+local glitch = SMODS.Gradient {
     key = "glitchkat10",
     colours = {
         G.C.bof_glitch_1,
@@ -178,8 +178,12 @@ SMODS.current_mod.extra_tabs = function()
                                 { n = G.UIT.R, config = { align = "cm", padding = 0.2 }, nodes = {
                                     { n = G.UIT.T, config = { text = "Contributors", scale = 0.45, colour = G.C.WHITE, shadow = true } }
                                 }},
+                                bof_credit_title("Amo", "Coder", G.C.HAND_LEVELS[3]),
+                                bof_credit_description("Many needed bug fixes"),
                                 bof_credit_title("Marffe", "Coder & Localizer", G.C.ORANGE),
                                 bof_credit_description("Bug fixes, Spanish translation, many decks"),
+                                bof_credit_title("arc", "Musician", G.C.bof_ColonParen),
+                                bof_credit_description("Music played in Fish-related packs"),
                                 bof_credit_title("wingedcatgirl", "Coder", G.C.SET.Fish),
                                 bof_credit_description("Technical code and UI"),
                                 bof_credit_title("Sophe", "Coder", G.C.SECONDARY_SET.Enhanced),

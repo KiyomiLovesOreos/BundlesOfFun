@@ -20,6 +20,7 @@ G.C.bof_george_1 = HEX("67bf9d")
 G.C.bof_george_2 = HEX("1e9ae9")
 G.C.bof_glitch_1 = HEX("f04360")
 G.C.bof_glitch_2 = HEX("855a82")
+G.C.bof_ColonParen = HEX("3498db")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 
 loc_colour()
