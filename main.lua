@@ -3,7 +3,7 @@ SMODS.BundlesOfFun = BundlesOfFun
 
 BundlesOfFun.config = SMODS.current_mod.config or {}
 BundlesOfFun.config.bundles = BundlesOfFun.config.bundles or {}
-BundlesOfFun.config.custom_sounds = BundlesOfFun.config.custom_sounds ~= nil and BundlesOfFun.config.custom_sounds or true
+BundlesOfFun.config.custom_sounds = BundlesOfFun.config.custom_sounds or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
 
