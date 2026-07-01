@@ -1,6 +1,7 @@
 [manifest]
 version = "1.0.0"
 
+# pianoman gets more choices
 [[patches]]
 [patches.pattern]
 target = "card.lua"

@@ -537,8 +537,7 @@ function modsCollectionTally(pool, set, ignore_discovered)
     local result = bof_modsCollectionTally_ref(pool, set, ignore_discovered)
     if pool and G.ACTIVE_MOD_UI then
         for _, v in pairs(pool) do
-            if v.mod and G.ACTIVE_MOD_UI.id == v.mod.id
-               and type(v.no_collection) == "function" and not v.no_collection() then
+            if v.mod and G.ACTIVE_MOD_UI.id == v.mod.id and type(v.no_collection) == "function" and not v.no_collection() then
                 if set then
                     if v.set and v.set == set then
                         result.of = result.of + 1

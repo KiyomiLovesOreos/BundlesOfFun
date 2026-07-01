@@ -1,3 +1,4 @@
+-- bignum compatibility for people who don't like fun
 if not SMODS.find_mod("talisman") and not SMODS.find_mod("amulet") then
     to_big = to_big or function(a)
         return a

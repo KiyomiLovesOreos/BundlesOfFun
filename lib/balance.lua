@@ -1,11 +1,14 @@
+-- register custom calculation key for balance effect
 table.insert(SMODS.calculation_keys, "bof_balance_percent")
 if SMODS.other_calculation_keys then
     table.insert(SMODS.other_calculation_keys, "bof_balance_percent")
-end
+end 
 
+-- track color mixing state and original function
 local bof_balance_mixed = false
 local bof_original_smods_calculate_effect = SMODS.calculate_individual_effect
 
+-- balance chips and mult towards their average
 function calculate_balance_percent_values(input_hand_chips, input_mult, percent)
     local chip_mod = percent * input_hand_chips
     local mult_mod = percent * input_mult
@@ -18,6 +21,8 @@ function calculate_balance_percent_values(input_hand_chips, input_mult, percent)
     new_mult = math.max(1, new_mult)
     return new_hand_chips, new_mult
 end
+
+-- handle balance percent calculation with visual effects
 SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
     if key ~= "bof_balance_percent" then
         return bof_original_smods_calculate_effect(effect, scored_card, key, amount, from_edition)
@@ -32,8 +37,10 @@ SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, f
     SMODS.Scoring_Parameters.chips:modify(new_hand_chips - hand_chips)
     SMODS.Scoring_Parameters.mult:modify(new_mult - mult)
     local text = "Balanced " .. (amount * 100) .. "%"
+    
+    -- apply plasma color effect
     G.E_MANAGER:add_event(Event({
-        trigger = 'immediate',
+        trigger = "immediate",
         func = (function()
             ease_colour(G.C.UI_CHIPS, mix_colours(G.C.PLASMA, G.C.UI_CHIPS, amount))
             ease_colour(G.C.UI_MULT, mix_colours(G.C.PLASMA, G.C.UI_MULT, amount))

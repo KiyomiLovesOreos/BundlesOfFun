@@ -14,14 +14,17 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.setting_blind then
-			local is_blueprint = context.blueprint
-			local a_partridge_in_a_pear_tree = context.blueprint_card or card
+			-- on the first day of christmas, my true love gave to me
+			local a_partridge_in_a_pear_tree = context.blueprint
+			-- on the second day of christmas, my true love gave to me
+			local two_turtle_doves = context.blueprint_card or card
+			-- and a_partridge_in_a_pear_tree
 			G.E_MANAGER:add_event(Event({
 			trigger = "after",
 			delay = 0.4,
 			func = function()
 				play_sound("tarot1")
-				a_partridge_in_a_pear_tree:juice_up(0.3, 0.5)
+				two_turtle_doves:juice_up(0.3, 0.5)
 				return true
 			end
 			}))
@@ -51,7 +54,7 @@ BundlesOfFun.Joker({
 								end
 								table.sort(sorted_cards, function(a, b) return (a:get_id() or 0) < (b:get_id() or 0) end)
 								local target_cards = {}
-								local skip_count = is_blueprint and (is_blueprint * card.ability.extra.cards) or 0
+								local skip_count = a_partridge_in_a_pear_tree and (a_partridge_in_a_pear_tree * card.ability.extra.cards) or 0
 								for i = 1 + skip_count, math.min(card.ability.extra.cards + skip_count, #sorted_cards) do
 									table.insert(target_cards, sorted_cards[i])
 								end

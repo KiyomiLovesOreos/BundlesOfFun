@@ -1,3 +1,4 @@
+-- create toggle ui element for bundle
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = {
         create_toggle{
@@ -12,11 +13,8 @@ local function bundle_toggle(item, colour)
     }}
 end
 
--- Captures a reference to the rendered tab content container so
--- BundlesOfFun.on_bundle_toggle can rebuild it live.
+-- store reference to tab content
 G.FUNCS.bof_store_tab_ref = function(e)
-    -- Walk up from our hidden node to find the wrapping UIElement that
-    -- SMODS created to hold this tab's content (it has config.object = <UIBox>).
     local p = e.parent
     while p do
         if p.config and p.config.object and p.config.object.UIRoot then
@@ -28,6 +26,7 @@ G.FUNCS.bof_store_tab_ref = function(e)
     e.config.func = nil
 end
 
+-- config tab with... well what do you expect
 SMODS.current_mod.config_tab = function()
     return {
         n = G.UIT.ROOT,
@@ -62,18 +61,21 @@ SMODS.current_mod.config_tab = function()
     }
 end
 
+-- create credit title
 local function bof_credit_title(name, role, colour)
     return { n = G.UIT.R, config = { align = "cm", padding = 0.1 }, nodes = {
         { n = G.UIT.T, config = { text = name .. " - " .. role, scale = 0.4, colour = colour, shadow = true } }
     }}
 end
 
+-- create credit description
 local function bof_credit_description(description)
     return { n = G.UIT.R, config = { align = "cm", padding = 0.05 }, nodes = {
         { n = G.UIT.T, config = { text = description, scale = 0.3, colour = G.C.WHITE, shadow = true } }
     }}
 end
 
+-- gradient colors for The Goats
 local george = SMODS.Gradient{
     key = "george_the_rat",
     colours = {
@@ -91,6 +93,7 @@ local glitch = SMODS.Gradient {
     cycle = 5
 }
 
+-- actually define the tabs for bundles and credits
 SMODS.current_mod.extra_tabs = function()
     return {
         {
@@ -131,7 +134,6 @@ SMODS.current_mod.extra_tabs = function()
                                 })
                             } }
                         }},
-                        -- Capture a reference to the tab content container for live rebuilds
                         { n = G.UIT.R, config = { func = "bof_store_tab_ref" } },
                     }
                 }

@@ -1,3 +1,4 @@
+-- gradient for mod badge using bundle colors
 local badge_gradient = SMODS.Gradient{
     key = "badge_gradient",
     colours = {
@@ -12,6 +13,9 @@ local badge_gradient = SMODS.Gradient{
 
 local original_create_mod_badges = SMODS.create_mod_badges
 
+-- bundle category names and gradient color indices
+-- i'm smart i know that word
+-- pneumonoultramicroscopicsilicovolcanoconiosis
 local CATEGORIES = {
     appetizers = { name = "Appetizers", color_idx = 1 },
     jesters = { name = "Jesters", color_idx = 2 },
@@ -21,6 +25,7 @@ local CATEGORIES = {
     fish = { name = "Fish", color_idx = 6 }
 }
 
+-- calculate text scaling to fit badge width
 local function create_category_badge(category_key, shared_scale_fac)
     local category = CATEGORIES[category_key]
     if not category then return nil end
@@ -81,6 +86,7 @@ function SMODS.create_mod_badges(obj, badges)
         return
     end
 
+    -- calculate scale factor for text to fit badge
     local function calculate_scale_fac(text)
         local base_scale = 0.33 * 0.9
         local size = 0.9
@@ -93,6 +99,7 @@ function SMODS.create_mod_badges(obj, badges)
         return calced_text_width > max_text_width and max_text_width / calced_text_width or 1
     end
 
+    -- create main mod badge with gradient
     local function create_main_badge(shared_scale_fac)
         local text = "Bundles Of Fun"
         local scale_fac = calculate_scale_fac(text)

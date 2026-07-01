@@ -2,6 +2,7 @@
 version = "1.0.0"
 lovely = "1.0.0"
 
+# collection ui needs to show dynamic tallies
 [[patches]]
 [patches.pattern]
 target = 'functions/UI_definitions.lua'

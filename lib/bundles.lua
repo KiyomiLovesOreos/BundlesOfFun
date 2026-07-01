@@ -1,6 +1,7 @@
 -- use bundle == "bundle_name" to attach an object to a bundle
 -- use bundle == { "bundle_name", { "bundle_dependency_1", "bundle_dependency_2", ... } } to have an object rely on other bundles to be visible
 
+-- extract primary bundle and dependencies from bundle field
 local function parse_bundle(bundle)
     if type(bundle) == "string" then
         return bundle, nil
@@ -10,6 +11,7 @@ local function parse_bundle(bundle)
     return nil, nil
 end
 
+-- check if bundle and its dependencies are enabled
 local function check_bundle_enabled(primary, secondary)
     if not BundlesOfFun.config.bundles[primary] then
         return false
@@ -24,6 +26,7 @@ local function check_bundle_enabled(primary, secondary)
     return true
 end
 
+-- create function to hide item from collection when bundle disabled
 local function get_bundle_no_collection(bundle)
     if bundle then
         local primary, secondary = parse_bundle(bundle)
@@ -33,6 +36,7 @@ local function get_bundle_no_collection(bundle)
     end
 end
 
+-- prevent disabled bundle items from entering pools
 local original_add_to_pool = SMODS.add_to_pool
 SMODS.add_to_pool = function(prototype_obj, args)
     if prototype_obj.bundle then
@@ -84,6 +88,7 @@ BundlesOfFun.Booster = SMODS.Booster:extend({
 -- bundle_name -> { center_object, ... }
 BundlesOfFun.bundle_items = nil
 
+-- build mapping from all registered centers
 function BundlesOfFun.ensure_bundle_map()
     if BundlesOfFun.bundle_items then return end
     BundlesOfFun.bundle_items = {}
@@ -105,6 +110,7 @@ function BundlesOfFun.ensure_bundle_map()
     end
 end
 
+-- add or remove item from pool based on enabled state
 local function sync_pool(pool, center, enabled)
     if not pool then return end
     if enabled then
@@ -124,6 +130,7 @@ local function sync_pool(pool, center, enabled)
     end
 end
 
+-- update all pools for items in a bundle when toggled
 function BundlesOfFun.sync_bundle(bundle_name)
     if not G.P_CENTER_POOLS then return end
     BundlesOfFun.ensure_bundle_map()
@@ -141,6 +148,7 @@ function BundlesOfFun.sync_bundle(bundle_name)
     end
 end
 
+-- sync all bundles to current config state
 function BundlesOfFun.sync_all_bundles()
     BundlesOfFun.ensure_bundle_map()
     if not BundlesOfFun.bundle_items then return end
@@ -149,6 +157,7 @@ function BundlesOfFun.sync_all_bundles()
     end
 end
 
+-- recalculate collection tallies respecting bundle visibility
 function BundlesOfFun.refresh_collection_ui()
     if not G.DISCOVER_TALLIES or not G.P_CENTERS then return end
     local set_to_tally = {
@@ -184,15 +193,12 @@ function BundlesOfFun.refresh_collection_ui()
     end
 end
 
+-- handle bundle toggle with pool sync and live update
 function BundlesOfFun.on_bundle_toggle(bundle_name)
-    -- Sync pools so items appear/disappear from shops/game
     BundlesOfFun.sync_bundle(bundle_name)
-    -- If the mod overlay is open and we have a reference to the current tab's
-    -- content container, rebuild it so the mod-additions page updates live.
     if BundlesOfFun.tab_content_box and G.ACTIVE_MOD_UI then
         local tabs = G.ACTIVE_MOD_UI.extra_tabs and G.ACTIVE_MOD_UI.extra_tabs()
         if tabs then
-            -- Find which tab is active by scanning for a "chosen" tab button
             local active_idx = 1
             if BundlesOfFun.tab_content_box.parent and BundlesOfFun.tab_content_box.parent.children then
                 for _, sibling in ipairs(BundlesOfFun.tab_content_box.parent.children) do
@@ -207,7 +213,6 @@ function BundlesOfFun.on_bundle_toggle(bundle_name)
             end
             local tab_def = tabs[active_idx]
             if tab_def and tab_def.tab_definition_function then
-                -- Create a fresh UIBox from the current tab definition and swap it in
                 BundlesOfFun.tab_content_box.config.object = UIBox(tab_def.tab_definition_function())
                 BundlesOfFun.tab_content_box:recalculate()
             end
@@ -215,9 +220,8 @@ function BundlesOfFun.on_bundle_toggle(bundle_name)
     end
 end
 
--- Called when the mod overlay closes, to ensure tallies are fresh
+-- refresh tallies when mod overlay closes
 function BundlesOfFun.on_exit_mods()
-    -- Refresh discover tallies so the next collection page open sees correct numbers
     BundlesOfFun.refresh_collection_ui()
 end
 
@@ -226,7 +230,6 @@ end
 do
     local original = BundlesOfFun.config.bundles
     local proxy = {}
-    -- Copy all existing keys onto the proxy so pairs() still works
     for k, v in pairs(original) do
         proxy[k] = v
     end

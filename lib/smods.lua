@@ -5,6 +5,7 @@ SMODS.Atlas({
     py = 95, 
 })
 
+-- placeholder :)
 SMODS.Atlas({
     key = "placeholder", 
     path = "placeholder.png", 
@@ -47,22 +48,27 @@ SMODS.Atlas({
     py = 95,
 })
 
+-- for jokers that scale its scaling effect
 SMODS.Attribute({
     key = "scale_scaling"
 })
 
+-- for jokers that adjust consumable slots (just tumor tom rn)
 SMODS.Attribute({
     key = "consumable_slot"
 })
 
+-- for jokers that do stuff with fish
 SMODS.Attribute({
     key = "fish"
 })
 
+-- for jokers that do stuff with stickers (just notebook)
 SMODS.Attribute({
     key = "stickers"
 })
 
+-- fih
 SMODS.ConsumableType({
     key = "Fish",
     primary_colour = { 1.0, 0.6, 0.7, 1 },
@@ -84,6 +90,7 @@ SMODS.ConsumableType({
     }
 })
 
+-- cool dynatext i made for fun that serves no purpose other than being cool
 SMODS.DynaTextEffect {
     key = "alarm",
     func = function(dynatext, index, letter)
@@ -93,18 +100,21 @@ SMODS.DynaTextEffect {
     end
 }
 
+-- small fish
 SMODS.ObjectType({
     key = "fish_s",
     select_card = "consumeables",
     default = "c_bof_bass_s",
 })
 
+-- big fish
 SMODS.ObjectType({
     key = "fish_b",
     select_card = "consumeables",
     default = "c_bof_bass_b"
 })
 
+-- legendary fish
 SMODS.ObjectType({
     key = "fish_l",
     select_card = "consumeables",
@@ -145,10 +155,12 @@ SMODS.Sound({
     key = "music_fish",
     path = "music_fish.ogg",
     select_music_track = function()
+        -- why does this need this many checks
         return G.booster_pack and not G.booster_pack.REMOVED and SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.config.center.kind == "bof_fish" and 100 or nil
     end
 })
 
+-- ts was NOT the wind
 SMODS.Sound({
 	key = "alarm_wind",
 	path = "alarm_wind.ogg",
@@ -161,20 +173,24 @@ SMODS.UndiscoveredSprite({
     pos = { x = 0, y = 0 }
 })
 
+-- check for some deck unlocks
 SMODS.current_mod.calculate = function(self, context)
     if context.end_of_round and context.main_eval then
         G.GAME.current_round.bof_wooden_destroyed = 0
     end
     if context.remove_playing_cards then
+        -- wooden deck
         G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed or 0
         for k, v in pairs(context.removed or {}) do
             if v:get_id() == 14 then
                 G.GAME.current_round.bof_wooden_destroyed = G.GAME.current_round.bof_wooden_destroyed + 1
             end
+            -- soapy deck
             if next(SMODS.get_enhancements(v)) ~= nil and v.edition ~= nil and v.seal ~= nil then
                 check_for_unlock({ b_bof_soapy = true })
             end
         end
+        -- wooden deck 2: electric boogaloo
         if G.GAME.current_round.bof_wooden_destroyed >= 4 then
             check_for_unlock({ b_bof_wooden = true })
         end

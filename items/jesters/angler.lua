@@ -1,7 +1,7 @@
 BundlesOfFun.Joker {
     key = "angler",
     name = "Angler",
-    bundle = "jesters",
+    bundle = { "jesters", { "fish" } },
     config = {
         extra = {
             chips = 30,
@@ -24,6 +24,7 @@ BundlesOfFun.Joker {
             end
         end
         local multiplier = fish_count
+        -- hello everybody my name is multiplier
         return {
             vars = {
                 card.ability.extra.chips,

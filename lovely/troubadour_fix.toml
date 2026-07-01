@@ -1,6 +1,7 @@
 [manifest]
 version = "1.0.0"
 
+# troubadour couldn't handle bundles of fun
 [[patches]]
 [patches.pattern]
 target = '=[SMODS Troubadour "src/items/wider_collection.lua"]'

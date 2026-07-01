@@ -22,7 +22,7 @@ BundlesOfFun.Joker {
     attributes = { "hands" },
     cost = 7,
     rarity = 2,
-    blueprint_compat = true,
+    blueprint_compat = true, -- i fear this was a mistake
     atlas = "joker",
     loc_vars = function(self, info_queue, card)
         return {

@@ -3,6 +3,7 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
+# remove base potato chips from lightning deck
 [[patches]]
 [patches.pattern]
 target = "card.lua"
@@ -15,6 +16,7 @@ if G.GAME.selected_back and G.GAME.selected_back.effect.center.key == "b_bof_lig
 end
 '''
 
+# track if mult scored for lightning unlock
 [[patches]]
 [patches.pattern]
 target = '''=[SMODS _ "src/game_object.lua"]'''

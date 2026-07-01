@@ -3,6 +3,7 @@ version = "1.0.0"
 dump_lua = true
 priority = -2
 
+# save boss list for passport to mess with
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
@@ -13,6 +14,7 @@ local passport_eligible_blinds = eligible_bosses
 '''
 match_indent = true
 
+# ok now we mess with it (lets duplicate bosses spawn)
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"

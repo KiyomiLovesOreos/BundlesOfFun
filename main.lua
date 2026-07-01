@@ -1,3 +1,4 @@
+-- initialize mod namespace and config
 if not BundlesOfFun then BundlesOfFun = {} end
 SMODS.BundlesOfFun = BundlesOfFun
 
@@ -7,6 +8,7 @@ BundlesOfFun.config.custom_sounds = BundlesOfFun.config.custom_sounds or {}
 
 BundlesOfFun.mod_config = SMODS.current_mod.config
 
+-- define custom colors for all the stuffs
 G.C.bof_appetizers = HEX("bb463c")
 G.C.bof_jesters = HEX("ffc857")
 G.C.bof_fables = HEX("535fc1")
@@ -23,11 +25,13 @@ G.C.bof_glitch_2 = HEX("855a82")
 G.C.bof_ColonParen = HEX("3498db")
 G.C.PLASMA = { 0.8, 0.45, 0.85, 1 }
 
+-- register localization colors
 loc_colour()
 G.ARGS.LOC_COLOURS.plasma = { 0.8, 0.45, 0.85, 1 }
 G.ARGS.LOC_COLOURS.small = mix_colours(G.C.BLUE, G.C.BLACK, 0.6)
 G.ARGS.LOC_COLOURS.big = mix_colours(G.C.ORANGE, G.C.BLACK, 0.6)
 
+-- load all library files
 local files = NFS.getDirectoryItemsInfo(SMODS.current_mod.path .. "/lib")
 for i = 1, #files do
     local file_name = files[i].name
@@ -36,6 +40,8 @@ for i = 1, #files do
     end
 end
 
+-- define bundle structure and item lists
+-- this replaces "order" from many other mods
 local files = {
     appetizers = {
         list = {
@@ -160,6 +166,7 @@ local files = {
     -- }
 }
 
+-- load all bundle items
 for _, name in ipairs(files["appetizers"].list) do
     assert(SMODS.load_file(files["appetizers"].directory .. name .. ".lua"))()
 end
@@ -184,6 +191,7 @@ for _, name in ipairs(files["fish"].list) do
     assert(SMODS.load_file(files["fish"].directory .. name .. ".lua"))()
 end
 
+-- coupons bundle not yet implemented
 -- for _, name in ipairs(files["coupons"].list) do
 --     assert(SMODS.load_file(files["coupons"].directory .. name .. ".lua"))()
 -- end

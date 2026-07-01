@@ -1,9 +1,10 @@
+# right from cryptid
 [manifest]
 version = "1.0.0"
 dump_lua = true
 priority = -2
 
-# right from cryptid
+# for older smods
 [[patches]]
 [patches.pattern]
 target = "functions/misc_functions.lua"
@@ -16,6 +17,7 @@ assembled_string = assembled_string..(type(subpart) == 'string' and subpart or (
 '''
 match_indent = true
 
+# for newer smods
 [[patches]]
 [patches.pattern]
 target = '=[SMODS _ "src/utils.lua"]'
