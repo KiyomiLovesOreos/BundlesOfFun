@@ -10,7 +10,6 @@ local badge_gradient = SMODS.Gradient{
     }
 }
 
-local TARGET_COLOR = HEX("9363bb")
 local original_create_mod_badges = SMODS.create_mod_badges
 
 local CATEGORIES = {

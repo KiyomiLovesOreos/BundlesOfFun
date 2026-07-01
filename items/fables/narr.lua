@@ -62,7 +62,7 @@ BundlesOfFun.Joker {
 }
 
 -- initialize suit at start of run
-local bof_original_start_run = bof_original_start_run or Game.start_run
+local bof_original_start_run = Game.start_run
 function Game:start_run(args)
     local r = bof_original_start_run(self, args)
     G.E_MANAGER:add_event(Event({

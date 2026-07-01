@@ -9,7 +9,7 @@ function BundlesOfFun.pluralize(str, vars)
         end
         local num = vars[tonumber(string.match(str, ">(%d+)"))] -- gets reference variable
         if type(num) == "string" then
-            num = (Big and to_number(to_big(num))) or num
+            num = (Big and tonumber(to_big(num))) or num
         end
         if not num then
             num = 1

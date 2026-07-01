@@ -35,7 +35,6 @@ BundlesOfFun.Joker {
                     shuffled_jokers[#shuffled_jokers + 1] = v
                 end
                 pseudoshuffle(shuffled_jokers, pseudoseed("j_bof_notebook"))
-                local sticker_applied = false
                 for _, target_joker in ipairs(shuffled_jokers) do
                     local available_stickers = {}
                     for k, v in pairs(SMODS.Stickers) do
@@ -49,7 +48,6 @@ BundlesOfFun.Joker {
                         target_joker:juice_up()
                         card:juice_up()
                         card_eval_status_text(card, "extra", nil, nil, nil, { message = localize("k_bof_sticker_applied") })
-                        sticker_applied = true
                         break
                     end
                 end
