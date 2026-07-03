@@ -116,11 +116,12 @@ SMODS.current_mod.extra_tabs = function()
                                 bundle_toggle("appetizers", G.C.bof_appetizers),
                                 bundle_toggle("jesters", G.C.bof_jesters),
                                 bundle_toggle("normalities", G.C.bof_normalities),
+                                bundle_toggle("fables", G.C.bof_fables),
                             }},
                             { n = G.UIT.C, config = { align = "cm", minw = 5 }, nodes = {
-                                bundle_toggle("fables", G.C.bof_fables),
                                 bundle_toggle("flats", G.C.bof_flats),
-                                bundle_toggle("fish", G.C.SET.Fish),
+                                bundle_toggle("fish", G.C.bof_fish),
+                                bundle_toggle("coupons", G.C.bof_coupons),
                             }}
                         }},
                         { n = G.UIT.R, config = { align = "cm", padding = 0 }, nodes = {

@@ -925,9 +925,9 @@ return {
             option_bof_fables = "Fables",
             option_bof_flats = "Flats",
             option_bof_fish = "Fish",
+            option_bof_coupons = "Coupons"
             -- option_bof_enemies = "Enemies",
             -- option_bof_finishers = "Finishers",
-            -- option_bof_coupons = "Coupons"
         }
     }
 }
