@@ -39,7 +39,13 @@ BundlesOfFun.Joker {
                 if not context.blueprint then
                     card.ability.extra.active = false
                 end
-                SMODS.calculate_effect({ message = localize { type = "variable", key = "a_hands", vars = { card.ability.extra.hands } } }, context.blueprint_card or card)
+                -- on the fifth day of christmas, my true love gave to me
+                local five_gold_rings = context.blueprint_card or card
+                -- four_calling_birds
+                -- three_french_hens
+                -- two_turtle_doves
+                -- and a_partridge_in_a_pear_tree
+                SMODS.calculate_effect({ message = localize { type = "variable", key = "a_hands", vars = { card.ability.extra.hands } } }, five_gold_rings)
             else
                 G.STATE = G.STATES.NEW_ROUND
             end

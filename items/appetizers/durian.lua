@@ -26,7 +26,9 @@ BundlesOfFun.Joker {
                             }
                         end
                         G.GAME.consumeable_buffer = 0
-                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Fool" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Tarot }, context.blueprint_card or card)
+                        -- on the first day of christmas, my true love gave to me
+                        local a_partridge_in_a_pear_tree = context.blueprint_card or card
+                        SMODS.calculate_effect({ message = "+" .. num_cards .. " Fool" .. (num_cards > 1 and "s" or ""), colour = G.C.SECONDARY_SET.Tarot }, a_partridge_in_a_pear_tree)
                         return true
                     end)
                 }))

@@ -32,8 +32,11 @@ BundlesOfFun.Joker({
 	end,
 	calculate = function(self, card, context)
 		if context.buying_card and context.card.ability.set == "Tarot" then
-			local how_many_pickles = context.blueprint_card or card
-			how_many_pickles.sell_cost = how_many_pickles.sell_cost - card.ability.extra.sell_cost_mod
+			-- on the third day day of christmas, my true love gave to me
+			local three_french_hens = context.blueprint_card or card
+			-- two_turtle_doves
+			-- and a_partridge_in_a_pear_tree
+			three_french_hens.sell_cost = three_french_hens.sell_cost - card.ability.extra.sell_cost_mod
 			return {
 				message = "Value Down!",
 				colour = G.C.RED
