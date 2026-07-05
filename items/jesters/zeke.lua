@@ -19,7 +19,7 @@ BundlesOfFun.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.selling_card and context.card.ability.set == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
+        if context.selling_card and context.card and context.card.ability and context.card.ability.set == "Tarot" and SMODS.pseudorandom_probability(card, "j_bof_zeke", 1, card.ability.extra.odds) then
             G.E_MANAGER:add_event(Event({
                 trigger = "after",
                 delay = 0.4,
