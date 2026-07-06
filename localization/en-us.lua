@@ -805,8 +805,7 @@ return {
                 },
                 unlock = {
                     "Have at least",
-                    "{C:attention,E:1}3 Spectral{} cards",
-                    "in your consumable slots"
+                    "{C:attention,E:1}3 Spectral{} cards"
                 }
             },
             v_bof_unboxing = {
