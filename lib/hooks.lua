@@ -536,7 +536,7 @@ function ease_ante(mod)
     return original_ease_ante(mod)
 end
 local function bof_get_random_voucher_key(excluded, seed_suffix)
-    local _pool, _pool_key = get_current_pool('Voucher')
+    local _pool, _pool_key = get_current_pool("Voucher")
     local candidates = {}
     for _, v in ipairs(_pool) do
         if v ~= "UNAVAILABLE" and (not excluded or not excluded[v]) then
