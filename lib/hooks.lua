@@ -377,7 +377,6 @@ function Game:start_run(arg)
 end
 
 -- retro deck main effect
--- scratch-off skip tracking
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)
@@ -400,30 +399,6 @@ G.FUNCS.skip_blind = function(e)
                 return true
             end
         }))
-    end
-    if G.GAME and G.GAME.blind then
-        if not G.GAME.bof_scratch_off_skips then
-            G.GAME.bof_scratch_off_skips = { small = false, big = false, skip_count = 0 }
-        end
-        G.GAME.bof_scratch_off_skips.skip_count = G.GAME.bof_scratch_off_skips.skip_count + 1
-        if G.GAME.bof_scratch_off_skips.skip_count == 1 then
-            G.GAME.bof_scratch_off_skips.small = true
-        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
-            G.GAME.bof_scratch_off_skips.big = true
-        end
-        if G.GAME.bof_scratch_off_skips.small and G.GAME.bof_scratch_off_skips.big and G.GAME.used_vouchers.v_bof_scratch_off then
-            local scratch_off = G.P_CENTERS.v_bof_scratch_off
-            if scratch_off and scratch_off.apply then
-                scratch_off:apply(nil, nil)
-            end
-            G.GAME.bof_scratch_off_skips.small = false
-            G.GAME.bof_scratch_off_skips.big = false
-            G.GAME.bof_scratch_off_skips.skip_count = 0
-        elseif G.GAME.bof_scratch_off_skips.skip_count == 2 then
-            G.GAME.bof_scratch_off_skips.small = false
-            G.GAME.bof_scratch_off_skips.big = false
-            G.GAME.bof_scratch_off_skips.skip_count = 0
-        end
     end
 end
 
@@ -551,6 +526,102 @@ SMODS.Joker:take_ownership("perkeo", {
         end
     end
 }, true)
+
+-- scratch-off logic
+local original_ease_ante = ease_ante
+function ease_ante(mod)
+    if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
+        G.GAME.bof_scratch_off_shop_reroll_count = 0
+    end
+    return original_ease_ante(mod)
+end
+local function bof_get_random_voucher_key(excluded, seed_suffix)
+    local _pool, _pool_key = get_current_pool('Voucher')
+    local candidates = {}
+    for _, v in ipairs(_pool) do
+        if v ~= "UNAVAILABLE" and (not excluded or not excluded[v]) then
+            candidates[#candidates + 1] = v
+        end
+    end
+    if #candidates == 0 then
+        for _, v in ipairs(_pool) do
+            if v ~= "UNAVAILABLE" then
+                candidates[#candidates + 1] = v
+            end
+        end
+    end
+    if #candidates == 0 then
+        return "UNAVAILABLE"
+    end
+    return pseudorandom_element(candidates, pseudoseed(_pool_key .. seed_suffix))
+end
+local function bof_scratch_off_reroll_vouchers()
+    if not G.shop_vouchers then
+        return
+    end
+    local voucher_cards = {}
+    for i = #G.shop_vouchers.cards, 1, -1 do
+        local c = G.shop_vouchers.cards[i]
+        if c.ability and c.ability.set == "Voucher" then
+            voucher_cards[#voucher_cards + 1] = c
+        end
+    end
+    local replace_count = #voucher_cards
+    if replace_count == 0 then
+        replace_count = 1
+    end
+    local excluded_keys = {}
+    for _, voucher_card in ipairs(voucher_cards) do
+        if voucher_card.config and voucher_card.config.center_key then
+            excluded_keys[voucher_card.config.center_key] = true
+        end
+        G.shop_vouchers:remove_card(voucher_card)
+        voucher_card:remove()
+    end
+    G.GAME.current_round.voucher = { spawn = {} }
+    for i = 1, replace_count do
+        local key = bof_get_random_voucher_key(excluded_keys, "scratch_off_" .. i)
+        if key == "UNAVAILABLE" or not G.P_CENTERS[key] then
+            return
+        end
+        G.GAME.current_round.voucher[#G.GAME.current_round.voucher + 1] = key
+        G.GAME.current_round.voucher.spawn[key] = true
+        local new_card = Card(
+            G.shop_vouchers.T.x + G.shop_vouchers.T.w / 2,
+            G.shop_vouchers.T.y,
+            G.CARD_W,
+            G.CARD_H,
+            G.P_CARDS.empty,
+            G.P_CENTERS[key],
+            { bypass_discovery_center = true, bypass_discovery_ui = true }
+        )
+        new_card.shop_voucher = true
+        create_shop_card_ui(new_card, "Voucher", G.shop_vouchers)
+        new_card:start_materialize()
+        G.shop_vouchers:emplace(new_card)
+    end
+    G.shop_vouchers.config.card_limit = #G.shop_vouchers.cards
+end
+local bof_reroll_shop_ref = G.FUNCS.reroll_shop
+if bof_reroll_shop_ref then
+    G.FUNCS.reroll_shop = function(e)
+        if G.GAME and G.GAME.used_vouchers and G.GAME.used_vouchers.v_bof_scratch_off then
+            G.GAME.bof_scratch_off_shop_reroll_count = (G.GAME.bof_scratch_off_shop_reroll_count or 0) + 1
+            if G.GAME.bof_scratch_off_shop_reroll_count >= 6 then
+                G.GAME.bof_scratch_off_shop_reroll_count = 0
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.45,
+                    func = function()
+                        bof_scratch_off_reroll_vouchers()
+                        return true
+                    end
+                }))
+            end
+        end
+        return bof_reroll_shop_ref(e)
+    end
+end
 
 -- Ensure collection tallies are refreshed whenever the mod overlay closes
 if G.FUNCS.exit_mods then

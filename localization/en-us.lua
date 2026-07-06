@@ -716,9 +716,8 @@ return {
             v_bof_scratch_off = {
                 name = "Scratch-Off",
                 text = {
-                    "Redeem a random {C:attention}Voucher{} if both",
-                    "{C:small,E:1}Small Blind{} and {C:big,E:1}Big Blind",
-                    "are skipped in an {C:attention}Ante"
+                    "Every {C:attention}6th{} reroll in the shop,",
+                    "{C:attention}restock{} all present {C:attention}Vouchers"
                 }
             },
             v_bof_lottery_ticket = {
