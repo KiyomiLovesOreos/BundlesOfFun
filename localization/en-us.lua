@@ -805,7 +805,7 @@ return {
                 },
                 unlock = {
                     "Have at least",
-                    "{C:attention,E:1}3{} Spectral cards",
+                    "{C:attention,E:1}3 Spectral{} cards",
                     "in your consumable slots"
                 }
             },

@@ -3,6 +3,7 @@ BundlesOfFun.Consumable {
     name = "Goldfish Legendary",
     bundle = "fish",
     set = "Fish",
+    soul_set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 5, y = 1 },
     config = {

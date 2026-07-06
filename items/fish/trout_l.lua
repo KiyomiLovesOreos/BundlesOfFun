@@ -3,6 +3,7 @@ BundlesOfFun.Consumable {
     name = "Rainbow Trout Legendary",
     bundle = "fish",
     set = "Fish",
+    soul_set = "Fish",
     pools = { ["fish_l"] = true },
     pos = { x = 2, y = 1 },
     config = {

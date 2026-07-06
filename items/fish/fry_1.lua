@@ -12,7 +12,7 @@ BundlesOfFun.Booster {
     kind = "bof_fish",
     select_card = "consumeables",
     weight = 0.3,
-    cost = 6,
+    cost = 4,
     atlas = "pack",
     loc_vars = function(self, info_queue, card)
         return {
