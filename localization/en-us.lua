@@ -798,8 +798,10 @@ return {
             v_bof_illegal_wares = {
                 name = "Illegal Wares",
                 text = {
-                    "{C:spectral}Spectral{} cards, {C:dark_edition}Negative{} consumables,",
-                    "and {C:dark_edition}Negative{} Jokers appear {C:attention}3X{} more often"
+                    "{C:spectral}Spectral{} cards,",
+                    "{C:dark_edition}Negative{} consumables,",
+                    "and {C:dark_edition}Negative{} Jokers",
+                    "appear {C:attention}3X{} more often"
                 },
                 unlock = {
                     "Have at least",

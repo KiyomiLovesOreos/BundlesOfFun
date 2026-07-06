@@ -275,12 +275,17 @@ SMODS.add_to_pool = function (prototype_obj, args)
 end
 
 -- fossilized deck: consumables in shop may rarely be negative
+-- dark alley & illegal wares: consumables in shop may rarely be negative
 local original_create_card_for_shop = create_card_for_shop
 function create_card_for_shop(area)
     local card = original_create_card_for_shop(area)
     if card and area == G.shop_jokers and card.ability and card.ability.consumeable and not (card.edition and card.edition.negative) then
         local back = G.GAME and G.GAME.selected_back
-        if back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized" then
+        if G.GAME.used_vouchers["v_bof_illegal_wares"] then
+            if pseudorandom(pseudoseed("b_bof_illegal_wares")) < 0.09 then
+                card:set_edition("e_negative", true)
+            end
+        elseif back and back.effect and back.effect.center and back.effect.center.key == "b_bof_fossilized" then
             if pseudorandom(pseudoseed("b_bof_fossilized")) < 0.06 then
                 card:set_edition("e_negative", true)
             end
@@ -526,6 +531,19 @@ local legendary_fish_keys = {
     "c_bof_goldfish_l",
     "c_bof_trout_l"
 }
+
+-- illegal wares: triple negative edition weight
+local negative_weight_ref = G.P_CENTERS.e_negative.get_weight
+SMODS.Edition:take_ownership("e_negative", {
+    get_weight = function(self, weight, object_type)
+        local base_weight = negative_weight_ref and negative_weight_ref(self, weight, object_type) or self.weight
+        if G.GAME.used_vouchers["v_bof_illegal_wares"] then
+            return base_weight * 3
+        end
+        return base_weight
+    end
+}, true)
+
 SMODS.Joker:take_ownership("perkeo", {
     name = "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     loc_vars = function(self, info_queue, card)
