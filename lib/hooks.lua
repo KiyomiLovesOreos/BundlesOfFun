@@ -610,7 +610,7 @@ if bof_reroll_shop_ref then
             if G.GAME.bof_scratch_off_shop_reroll_count >= 6 then
                 G.GAME.bof_scratch_off_shop_reroll_count = 0
                 G.E_MANAGER:add_event(Event({
-                    trigger = 'after',
+                    trigger = "after",
                     delay = 0.45,
                     func = function()
                         bof_scratch_off_reroll_vouchers()
