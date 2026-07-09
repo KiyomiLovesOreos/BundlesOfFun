@@ -3,13 +3,21 @@ BundlesOfFun.Voucher {
     name = "Illegal Wares",
     bundle = "coupons",
     requires = { "v_bof_dark_alley" },
-    config = { extra = { spectral_rate = 3 } },
     pos = { x = 0, y = 1 },
     unlocked = false,
     atlas = "voucher",
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
+        info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
+    end,
     redeem = function(self, card, area)
-        if G.GAME.spectral_rate < self.config.extra.spectral_rate then
-            G.GAME.spectral_rate = self.config.extra.spectral_rate
+        if G.GAME.spectral_rate then
+            G.GAME.spectral_rate = G.GAME.spectral_rate * 3
+        end
+    end,
+    unredeem = function(self, card, area)
+        if G.GAME.spectral_rate then
+            G.GAME.spectral_rate = G.GAME.spectral_rate / 3
         end
     end,
     check_for_unlock = function(self, args)

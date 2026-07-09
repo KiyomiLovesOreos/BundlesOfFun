@@ -635,9 +635,9 @@ return {
                     "destroyed when {C:attention}discarded"
                 },
                 unlock = {
-                    "Destroy a card with an",
-                    "{C:enhanced}Enhancement{}, {C:dark_edition}Edition{},",
-                    "and {C:attention}Seal"
+                    "Destroy a card with",
+                    "an {C:enhanced}Enhancement{},",
+                    "{C:dark_edition}Edition{}, and {C:attention}Seal"
                 }
             },
             b_bof_display = {
@@ -662,8 +662,8 @@ return {
                     "their {C:attention}base chips{} when scored"
                 },
                 unlock = {
-                    "Win a run",
-                    "without any {C:mult}Mult{},",
+                    "Win a run without ever",
+                    "triggering any {C:mult}+Mult{} effects,",
                     "{C:white,s:0.8,X:mult}XMult{s:0.8} may still be used"
                 }
             }
@@ -805,7 +805,8 @@ return {
                 },
                 unlock = {
                     "Have at least",
-                    "{C:attention,E:1}3 Spectral{} cards"
+                    "{C:attention}3 {C:spectral}Spectral{} cards",
+                    "at the same time"
                 }
             },
             v_bof_unboxing = {
@@ -823,7 +824,7 @@ return {
                 },
                 unlock = {
                     "Skip a total of",
-                    "{C:attention,E:1}30{} Booster Packs",
+                    "{C:attention}30{} Booster Packs",
                     "{C:inactive}(#1#)"
                 }
             },
@@ -841,8 +842,8 @@ return {
                     "{C:attention}restock{} all present {C:attention}Booster Packs"
                 },
                 unlock = {
-                    "Have at least",
-                    "{C:attention,E:1}10{} Vouchers"
+                    "Redeem {C:attention}3{} Vouchers",
+                    "in the same Ante"
                 }
             },
             v_bof_ice_bucket = {
@@ -859,9 +860,9 @@ return {
                     "{C:attention}additional{} consumable slot"
                 },
                 unlock = {
-                    "Have {C:attention,E:1}5 Fish",
+                    "Have {C:attention}5 {C:fish}Fish",
                     "cards expire",
-                    "{C:inactive}(#1#)"
+                    "in one run"
                 }
             }
         },

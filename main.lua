@@ -154,8 +154,8 @@ local files = {
         list = {
             "dark_alley",
             "illegal_wares",
---         "unboxing",
---         "scalping",
+            "unboxing",
+            "scalping",
             "scratch_off",
             "lottery_ticket",
             "ice_bucket",

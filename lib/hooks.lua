@@ -381,10 +381,35 @@ function Game:start_run(arg)
     G.GAME.bof_fish_extra_rounds = 0
     G.GAME.bof_fish_extra_consumable_slots = 0
     G.GAME.bof_lottery_ticket_shop_reroll_count = 0
+    G.GAME.bof_vouchers_redeemed_this_ante = 0
+    G.GAME.bof_current_ante = 1
+    G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped = G.PROFILES[G.SETTINGS.profile].career_stats.bof_boosters_skipped or 0
     return original_game_start_run(self, arg)
 end
 
--- retro deck main effect
+-- track voucher purchases for lottery ticket unlock
+local original_use_card = G.FUNCS.use_card
+function G.FUNCS.use_card(e, mute, nosave)
+    local card = e.config.ref_table
+    if card and card.ability and card.ability.set == "Voucher" and card.area == G.shop_vouchers then
+        local current_ante = G.GAME.round_resets.ante or 1
+        if current_ante ~= G.GAME.bof_current_ante then
+            G.GAME.bof_vouchers_redeemed_this_ante = 0
+            G.GAME.bof_current_ante = current_ante
+        end
+        G.GAME.bof_vouchers_purchased = (G.GAME.bof_vouchers_purchased or 0) + 1
+        G.GAME.bof_vouchers_redeemed_this_ante = (G.GAME.bof_vouchers_redeemed_this_ante or 0) + 1
+        check_for_unlock({ bof_vouchers_redeemed_this_ante = G.GAME.bof_vouchers_redeemed_this_ante })
+    end
+    return original_use_card(e, mute, nosave)
+end
+
+-- track booster skips for scalping unlock
+local original_skip_booster = G.FUNCS.skip_booster
+function G.FUNCS.skip_booster(e)
+    inc_career_stat("bof_boosters_skipped", 1)
+    return original_skip_booster(e)
+end
 local original_skip_blind = G.FUNCS.skip_blind
 G.FUNCS.skip_blind = function(e)
     original_skip_blind(e)

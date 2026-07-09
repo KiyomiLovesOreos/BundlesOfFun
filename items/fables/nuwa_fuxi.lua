@@ -10,6 +10,9 @@ BundlesOfFun.Joker {
     unlocked = false,
     blueprint_compat = true,
     atlas = "joker",
+    loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = { key = "e_negative_consumable", set = "Edition", config = { extra = 1 } }
+    end,
     calculate = function(self, card, context)
         if G.jokers.cards[1] == card then
             if context.setting_blind then

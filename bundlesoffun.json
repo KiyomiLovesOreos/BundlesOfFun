@@ -7,6 +7,9 @@
   "main_file": "main.lua",
   "version": "0.5.0-alpha",
   "icon_path": "icon.png",
-  "dependencies": [ "Steamodded (>=1.0.0~BETA-1731b, <<1.0.0~BETA-1827b)" ],
+  "dependencies": [
+    "Steamodded (>=1.0.0~BETA-1731b)",
+    "Steamodded (<<1.0.0~BETA-1827b)"
+  ],
   "tags": ["vanilla_balance"]
 }
