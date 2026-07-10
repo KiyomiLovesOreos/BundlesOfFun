@@ -5,9 +5,6 @@ BundlesOfFun.Back {
 	atlas = "deck",
 	pos = { x = 6, y = 0 },
     unlocked = false,
-    loc_vars = function(self, info_queue)
-		return { vars = {} }
-	end,
     calculate = function(self, back, context)
         if context.discard then
             if next(SMODS.get_enhancements(context.other_card)) ~= nil then
