@@ -9,7 +9,7 @@ function BundlesOfFun.pluralize(str, vars)
         end
         local num = vars[tonumber(string.match(str, ">(%d+)"))] -- gets reference variable
         if type(num) == "string" then
-            num = (Big and tonumber(to_big(num))) or num
+            num = tonumber(num) or num
         end
         if not num then
             num = 1
@@ -50,12 +50,12 @@ function BundlesOfFun.pluralize(str, vars)
         local result = plural
         for _, k in ipairs(keys) do
             if fch(checks[k], "=") then
-                if to_big(math.abs(math.abs(num) - k)) < to_big(0.001) then
+                if math.abs(math.abs(num) - k) < 0.001 then
                     result = string.sub(checks[k], 2, -1)
                     break
                 end
             elseif fch(checks[k], "<") then
-                if to_big(num) < to_big(k - 0.001) then
+                if num < (k - 0.001) then
                     result = string.sub(checks[k], 2, -1)
                     break
                 end
@@ -78,7 +78,7 @@ end
 -- ordinal suffix function for localization (1st, 2nd, 3rd, etc.)
 function BundlesOfFun.ordinalize(num)
     if type(num) == "string" then
-        num = (Big and tonumber(to_big(num))) or tonumber(num)
+        num = tonumber(num)
     end
     num = tonumber(num) or 1
     
@@ -96,7 +96,6 @@ function BundlesOfFun.ordinalize(num)
             suffix = "rd"
         end
     end
-    
     return tostring(num) .. suffix
 end
 -- wrapper to detect <o> prefix and call ordinalize
