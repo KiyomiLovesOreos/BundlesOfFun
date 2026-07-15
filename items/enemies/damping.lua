@@ -1,4 +1,4 @@
--- SMODS.Blind {
+-- BundlesOfFun.Blind {
 --     key = "damping",
 --     name = "The Damping",
 --     bundle = "enemies",

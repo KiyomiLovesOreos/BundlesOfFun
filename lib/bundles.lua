@@ -93,6 +93,20 @@ BundlesOfFun.Voucher = SMODS.Voucher:extend({
     end
 })
 
+BundlesOfFun.Blind = SMODS.Blind:extend({
+    inject = function(self, i)
+        if self.bundle and not self.no_collection then
+            self.no_collection = get_bundle_no_collection(self.bundle)
+        end
+        SMODS.Blind.inject(self, i)
+        if not self._discovered_unlocked_overwritten then
+            self._discovered_unlocked_overwritten = true
+            self._d, self._u = self.discovered, self.unlocked
+            self._saved_d_u = true
+        end
+    end
+})
+
 -- Bundle-to-items map, lazily built on first toggle.
 -- bundle_name -> { center_object, ... }
 BundlesOfFun.bundle_items = nil
@@ -191,6 +205,20 @@ function BundlesOfFun.refresh_collection_ui()
                         sub.of = sub.of + 1
                         if v.discovered then sub.tally = sub.tally + 1 end
                     end
+                end
+            end
+        end
+    end
+    -- special check for blinds specifically since they aren't part of G.P_CENTERS
+    if G.P_BLINDS then
+        for _, v in pairs(G.P_BLINDS) do
+            if not v.omit and type(v.no_collection) == "function" and not v.no_collection() then
+                local tally = G.DISCOVER_TALLIES.blinds
+                if tally then
+                    tally.of = tally.of + 1
+                    if v.discovered then tally.tally = tally.tally + 1 end
+                    G.DISCOVER_TALLIES.total.of = G.DISCOVER_TALLIES.total.of + 1
+                    if v.discovered then G.DISCOVER_TALLIES.total.tally = G.DISCOVER_TALLIES.total.tally + 1 end
                 end
             end
         end

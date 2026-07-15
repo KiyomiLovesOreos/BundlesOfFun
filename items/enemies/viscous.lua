@@ -1,4 +1,4 @@
--- SMODS.Blind {
+-- BundlesOfFun.Blind {
 --     key = "viscous",
 --     name = "The Viscous",
 --     bundle = "enemies",

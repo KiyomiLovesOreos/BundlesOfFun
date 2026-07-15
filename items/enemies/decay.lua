@@ -1,4 +1,4 @@
-SMODS.Blind {
+BundlesOfFun.Blind {
     key = "decay",
     name = "The Decay",
     bundle = "enemies",

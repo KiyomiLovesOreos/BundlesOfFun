@@ -2,7 +2,7 @@
 local function bundle_toggle(item, colour)
     return { n = G.UIT.R, config = { align = "cm" }, nodes = {
         create_toggle{
-            label = localize("option_bof_"..item),
+            label = localize("option_bof_" .. item),
             active_colour = colour,
             col = true,
             label_scale = 0.4,
