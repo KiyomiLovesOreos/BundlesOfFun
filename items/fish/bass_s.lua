@@ -9,7 +9,7 @@ BundlesOfFun.Consumable {
         card_limit = 1,
         extra = {
             chips = 30,
-            rounds_remaining = 2
+            rounds_remaining = 3
         }
     },
     cost = 4,
