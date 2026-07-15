@@ -165,15 +165,15 @@ local files = {
     },
     enemies = {
         list = {
-            "prime",
-            "decay",
+            "dominant",
+            "regression",
             "irradiated",
             "change",
             -- "tiny",
             -- "damping",
             -- "viscous",
             -- "angle",
-            -- "index",
+            -- "array",
             -- "curve",
             -- "decay",
             -- "average",

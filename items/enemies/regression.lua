@@ -1,6 +1,6 @@
 BundlesOfFun.Blind {
-    key = "decay",
-    name = "The Decay",
+    key = "regression",
+    name = "The Regression",
     bundle = "enemies",
     pos = { y = 1 },
     atlas = "blind",

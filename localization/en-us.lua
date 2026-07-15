@@ -883,15 +883,15 @@ return {
         },
         -- enemies (& finishers)
         Blind = {
-            bl_bof_prime = {
-                name = "The Prime",
+            bl_bof_dominant = {
+                name = "The Dominant",
                 text = {
                     "Must play cards",
                     "without a Seal"
                 }
             },
-            bl_bof_decay = {
-                name = "The Decay",
+            bl_bof_regression = {
+                name = "The Regression",
                 text = {
                     "Rightmost Joker",
                     "is disabled"
@@ -990,7 +990,7 @@ return {
             k_bof_fry = "Fry Pack",
             k_bof_hooked = "Hooked Pack",
             k_fish = "Fish",
-            bl_bof_prime = "Must not play cards with Seals",
+            bl_bof_dominant = "Must not play cards with Seals",
 
             option_bof_appetizers = "Appetizers",
             option_bof_jesters = "Jesters",

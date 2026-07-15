@@ -1,6 +1,6 @@
 BundlesOfFun.Blind {
-    key = "prime",
-    name = "The Prime",
+    key = "dominant",
+    name = "The Dominant",
     bundle = "enemies",
     pos = { y = 0 },
     atlas = "blind",
@@ -22,6 +22,6 @@ BundlesOfFun.Blind {
         end
 	end,
     get_loc_debuff_text = function(self)
-		return localize("bl_bof_prime")
+		return localize("bl_bof_dominant")
 	end
 }
