@@ -4,7 +4,7 @@ BundlesOfFun.Joker {
     bundle = "normalities",
     config = {
         extra = { 
-            dollars = 25,
+            dollars = 20,
             yes = false
         }
     },
