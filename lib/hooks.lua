@@ -513,7 +513,7 @@ local oldsmodscalculaterepetitions = SMODS.calculate_repetitions
 SMODS.calculate_repetitions = function(card, context, reps)
     card.bof_retriggered = nil
     local g = oldsmodscalculaterepetitions(card, context, reps)
-    if #g >= 2 then
+    if #(g or reps) >= 2 then
         card.bof_retriggered = true
     end
     return g
